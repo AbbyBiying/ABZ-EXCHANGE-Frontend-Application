@@ -1,0 +1,17 @@
+.overlay {
+  display: none;
+}
+
+.menu-active {
+  display: block;
+  z-index: 998;
+  background: black;
+  opacity: 0.25;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.active {
+  z-index: 999;
+}
