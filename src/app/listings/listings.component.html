@@ -1,4 +1,11 @@
 <p>Listings: </p>
 <div *ngFor="let listing of listings">
-  {{ listing | json }}
+  <!-- {{ listing |json }} -->
+  <mat-card class="listing-card">
+    <mat-card-header>
+      <div mat-card-avatar class="listing-header-image"></div>
+      <mat-card-title>Name: {{ listing.name }}</mat-card-title>
+      <mat-card-subtitle>Description: {{ listing.description }}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
 </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LocationsService } from '../services/locations.service';
-import { ConfigService } from '../config/config.service';
 import { HttpClient } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -12,14 +11,14 @@ import { MatButtonModule } from '@angular/material/button';
 export class LocationsComponent implements OnInit { 
   locations = [];
 
-  constructor(private locationsService: LocationsService, private http: HttpClient, private configService: ConfigService) {          
+  constructor(private locationsService: LocationsService, private http: HttpClient) {          
   }
 
   ngOnInit() {  
     this.locationsService.getLocations()
-      .subscribe((data) => {
-        console.log(data);        
-        this.locations = data;
+      .subscribe((locations) => {
+        console.log(locations);        
+        this.locations = locations;
       })  
     }
 }

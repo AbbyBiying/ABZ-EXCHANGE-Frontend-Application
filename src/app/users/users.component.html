@@ -1,4 +1,19 @@
 <p>Users: </p>
-<div *ngFor="let user of users">
-  {{user | json}}
+
+<div 
+  fxLayout="row" 
+  fxLayoutAlign="space-around center"
+  fxLayout.xs="column" 
+  fxLayoutWrap 
+  fxLayoutGap="5%">  
+
+  <mat-card class="user-card" *ngFor="let user of users">
+
+      <mat-card-header>        
+        <div mat-card-avatar class="user-header-image"></div>
+
+        <mat-card-title>Username: {{ user.username }}</mat-card-title>
+      </mat-card-header> 
+    </mat-card>  
 </div>
+ 

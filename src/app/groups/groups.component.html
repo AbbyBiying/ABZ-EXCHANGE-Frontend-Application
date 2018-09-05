@@ -1,4 +1,11 @@
 <p>Groups: </p>
 <div *ngFor="let group of groups">
-  {{ group | json }}
+  <!-- {{ group |json }} -->
+  <mat-card class="group-card">
+    <mat-card-header>
+      <div mat-card-avatar class="group-header-image"></div>
+      <mat-card-title>Name: {{ group.name }}</mat-card-title>
+      <mat-card-subtitle>Description: {{ group.description }}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
 </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListingsService } from '../services/listings.service';
-import { ConfigService } from '../config/config.service';
 import { HttpClient } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -13,14 +12,13 @@ export class ListingsComponent implements OnInit {
 
   listings = [];
 
-  constructor(private listingsService: ListingsService, private http: HttpClient, private configService: ConfigService) {          
+  constructor(private listingsService: ListingsService, private http: HttpClient) {          
   }
-
+  
   ngOnInit() {  
     this.listingsService.getListings()
-      .subscribe((data) => {
-        console.log(data);        
-        this.listings = data;
-      })  
+      .subscribe(
+        (listings: any[]) => this.listings = listings
+      )  
     }
 }

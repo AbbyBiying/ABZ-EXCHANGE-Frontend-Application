@@ -9,7 +9,6 @@ import { LocationsComponent } from './locations/locations.component';
 import { HomeComponent } from './home/home.component';
 import { ConfigService } from './config/config.service';
 
-
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MobileMenuModule } from './mobile-menu/mobile-menu.module';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,6 +18,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const appRoutes: Routes = [
   {
@@ -62,7 +62,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     MatMenuModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    FlexLayoutModule
 
   ],  
   exports: [RouterModule],

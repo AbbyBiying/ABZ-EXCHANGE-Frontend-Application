@@ -1,5 +1,5 @@
 import { Injectable, Pipe } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
@@ -8,6 +8,7 @@ import { ConfigService } from '../config/config.service';
   providedIn: 'root'
 })
 export class GroupsService {
+  
   constructor(private http: HttpClient, private configService: ConfigService) {          
   }
 
@@ -25,9 +26,9 @@ export class GroupsService {
       .pipe(
         catchError(this.configService.handleError)
       )
-      .subscribe(data => {
-         // console.log(data);                
-          observer.next(data);
+      .subscribe((response: HttpResponse<any>) => {
+         // console.log(response);                
+          observer.next(response);
           observer.complete();
       });
     });

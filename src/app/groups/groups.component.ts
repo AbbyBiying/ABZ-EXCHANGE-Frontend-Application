@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GroupsService } from '../services/groups.service';
-import { ConfigService } from '../config/config.service';
 import { HttpClient } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -13,14 +12,14 @@ export class GroupsComponent implements OnInit {
 
   groups = [];
 
-  constructor(private groupsService: GroupsService, private http: HttpClient, private configService: ConfigService) {          
+  constructor(private groupsService: GroupsService, private http: HttpClient) {          
   }
 
   ngOnInit() {  
     this.groupsService.getGroups()
-      .subscribe((data) => {
-        console.log(data);        
-        this.groups = data;
-      })  
+      .subscribe(
+        (groups: any[]) => this.groups = groups
+      )  
     }
 }
+   

@@ -1,5 +1,11 @@
 <p>Locations: </p>
 <div *ngFor="let location of locations">
-  {{location | json}}
+  <!-- {{ location |json }} -->
+  <mat-card class="location-card">
+    <mat-card-header>
+      <div mat-card-avatar class="location-header-image"></div>
+      <mat-card-title>City: {{ location.city }}</mat-card-title>
+      <mat-card-subtitle>State: {{ location.state }}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
 </div>
- 
