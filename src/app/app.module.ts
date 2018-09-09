@@ -1,24 +1,34 @@
+// angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { UsersComponent } from './users/users.component';
-import { ListingsComponent } from './listings/listings.component';
-import { GroupsComponent } from './groups/groups.component';
-import { LocationsComponent } from './locations/locations.component';
-import { HomeComponent } from './home/home.component';
-import { ConfigService } from './config/config.service';
-
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MobileMenuModule } from './mobile-menu/mobile-menu.module';
-import { MatIconModule } from '@angular/material/icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RouterModule, Routes } from '@angular/router';
+
+// material
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
+import { AppComponent } from './app.component';
+import { AuthService } from './auth/auth.service';
+import { ConfigService } from './config/config.service';
+import { GroupsComponent } from './groups/groups.component';
+import { HomeComponent } from './home/home.component';
+import { ListingsComponent } from './listings/listings.component';
+import { LocationsComponent } from './locations/locations.component';
+import { MobileMenuModule } from './mobile-menu/mobile-menu.module';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { UsersComponent } from './users/users.component';
 
 const appRoutes: Routes = [
   {
@@ -41,8 +51,15 @@ const appRoutes: Routes = [
     path: 'groups',
     component: GroupsComponent
   },
-
-  ];
+  {
+    path: 'signup',
+    component: SignupComponent
+  },   
+  {
+    path: 'signin',
+    component: SigninComponent
+  }, 
+];
 
 @NgModule({
   declarations: [
@@ -52,23 +69,28 @@ const appRoutes: Routes = [
     GroupsComponent,
     LocationsComponent,
     HomeComponent,
+    SignupComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,    
+    HttpClientModule,        
+    FlexLayoutModule,
+    ReactiveFormsModule,
     MobileMenuModule,
     MatIconModule,
-    HttpClientModule,    
     RouterModule.forRoot(appRoutes),
     MatMenuModule,
     MatCardModule,
     MatButtonModule,
-    FlexLayoutModule
-
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],  
   exports: [RouterModule],
 
-  providers: [ConfigService],
+  providers: [AuthService, ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
