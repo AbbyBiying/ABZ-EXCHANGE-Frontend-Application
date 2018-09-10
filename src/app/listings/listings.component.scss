@@ -6,3 +6,28 @@
   background-image: url('/assets/logos/default.png');
   background-size: cover;
 }
+
+.listing-container {
+  flex: 1 0 auto;
+  padding: 32px;
+
+  #listing-form {
+    width: 384px;
+    max-width: 384px;
+    padding: 32px;
+    background: #FFFFFF;
+    text-align: center;
+  }
+  
+  form {
+    mat-form-field {
+      width: 90%;
+    }
+
+    .submit-button {
+      width: 150px;
+      margin: 16px auto;
+      display: block;
+    }
+  }
+}

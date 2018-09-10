@@ -27,7 +27,7 @@ export class GroupsService {
         catchError(this.configService.handleError)
       )
       .subscribe((response: HttpResponse<any>) => {
-         // console.log(response);                
+          console.log(response);                
           observer.next(response);
           observer.complete();
       });

@@ -2,10 +2,12 @@
 @import './mixins';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "./theming";
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
+
 .mat-form-field{
   .alert-message {
     font-size: 11px;
@@ -18,4 +20,17 @@ body {
     background-color: #f2dede;
     border-color: #ebccd1;
   }
+}
+
+.index {
+  flex: 1 0 auto;
+  padding: 32px;
+}
+
+#form {
+  width: 384px;
+  max-width: 384px;
+  padding: 32px;
+  background: #FFFFFF;
+  text-align: center;
 }

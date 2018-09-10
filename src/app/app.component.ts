@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
-import { MatMenuModule, MatMenu, MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-root',
