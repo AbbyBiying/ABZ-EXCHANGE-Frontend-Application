@@ -6,21 +6,6 @@
   background-image: url('/assets/logos/default.png');
   background-size: cover;
 }
+ 
 
-.group-container {
-  flex: 1 0 auto;
-  padding: 32px;
-  
-  form {
-    mat-form-field {
-      width: 90%;
-    }
-
-    .submit-button {
-      width: 150px;
-      margin: 16px auto;
-      display: block;
-    }
-  }
-}
  

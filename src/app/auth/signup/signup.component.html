@@ -1,5 +1,5 @@
-<div class="signup-container" fxLayout="column" fxLayoutAlign="space-between center">           
-  <div id="signup-form">
+<div class="form-container" fxLayout="column" fxLayoutAlign="space-between center">           
+  <div id="header-form">
 
     <div class="logo">
     </div>
@@ -12,24 +12,62 @@
       </mat-error> -->
 
       <mat-form-field>
-        <input matInput #userEmail placeholder="Email" formControlName="userEmail" [errorStateMatcher]="matcher" required>
+        <input matInput #userEmail placeholder="Email" formControlName="userEmail" required [pattern]="emailPattern">
         <mat-error *ngIf="signupForm.get('userEmail').invalid && signupForm.get('userEmail').touched" class="alert alert-danger">
-          Please enter a valid email.     
+          <!-- <span *ngIf="signupForm.get('userEmail').errors.pattern"> -->
+          <span *ngIf="signupForm.get('userEmail').errors['emailIsForbidden']">
+            No tester please!
+          </span> 
+        
+          <span *ngIf="signupForm.get('userEmail').errors['required'] || signupForm.get('userEmail').errors.email ">
+            Please enter a valid email for email confirmation.  
+          </span>
         </mat-error>
-    
       </mat-form-field>
+
+      <mat-form-field>
+        <input matInput #userName placeholder="Username" formControlName="userName" required>
+        <mat-error *ngIf="signupForm.get('userName').invalid && signupForm.get('userName').touched" class="alert alert-danger">
+          <span *ngIf="signupForm.get('userName').errors['ThisNameIsForbidden']">
+            No tester please!
+          </span> 
+          <span *ngIf="signupForm.get('userName').errors.minlength">
+            Username must be at least 2 characters long.  
+          </span>
+          <span *ngIf="signupForm.get('userName').errors['required']">
+            Please enter a valid username.   
+          </span>
+        </mat-error>
+      </mat-form-field>
+
       <mat-form-field>
         <input matInput #userPassword placeholder="Password" formControlName="userPassword" required>      
         <mat-error *ngIf="signupForm.get('userPassword').invalid && signupForm.get('userPassword').touched" class="alert alert-danger">
-          Please enter a password.     
+          <span *ngIf="signupForm.get('userPassword').errors.minlength">
+            Password must be at least 5 characters long.  
+          </span>
+          <span *ngIf="signupForm.get('userPassword').errors['required']">
+            Please enter a valid password.   
+          </span>  
         </mat-error>   
       </mat-form-field>  
 
       <mat-form-field>
         <input matInput #userBio placeholder="Bio" formControlName="userBio">     
       </mat-form-field>
-        
+
       <mat-form-field>
+        <input matInput #userBio placeholder="Avatar" formControlName="userAvatar"> <label for="file" class="fileContainer">
+          Choose a PNG File to upload
+          <input type="file"
+                accept=".png"
+                id="file">
+              <!--   [imgId]="signupForm.get('userAvatar').value"
+                (change)="handleFileInput($event.target.files)"> -->
+        </label>
+      </mat-form-field>
+        
+    <!--   <mat-form-field>
         <input matInput #userCity placeholder="City" formControlName="userCity" required>        
         <mat-error *ngIf="!signupForm.get('userCity').valid && signupForm.get('userCity').touched" class="alert alert-danger">
           Please enter a city.     
@@ -37,13 +75,14 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput #userState placeholder="State" formControlName="userState" required>        <mat-error *ngIf="!signupForm.get('userState').valid && signupForm.get('userState').touched" class="alert alert-danger">
+        <input matInput #userState placeholder="State" formControlName="userState" required>        
+        <mat-error *ngIf="!signupForm.get('userState').valid && signupForm.get('userState').touched" class="alert alert-danger">
           Please enter a state.     
         </mat-error>     
-      </mat-form-field>
+      </mat-form-field> -->
 
       <mat-form-field>
-        <mat-select placeholder="Existing Locations">
+        <mat-select placeholder="Existing Locations" formControlName="userLocation" required>
           <mat-option *ngFor="let location of locations" [value]="location.city">
             {{location.city}}
           </mat-option>
@@ -51,7 +90,7 @@
       </mat-form-field>
 
 
-      <button mat-raised-button color="accent" class="submit-button" aria-label="SIGN IN"[disabled]="f.invalid" (click)="onSubmit()">
+      <button mat-raised-button color="accent" class="submit-button" aria-label="SIGN IN" [disabled]="f.invalid" (click)="onSubmit()">
         SIGN UP
       </button>  
     </form>

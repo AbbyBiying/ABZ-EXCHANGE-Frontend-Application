@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GroupsService } from '../services/groups.service';
 import { HttpClient } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss']
 })
-export class GroupsComponent implements OnInit, ngAfterViewInit {
+export class GroupsComponent implements OnInit {
 
   groups = [];
   groupForm: any;
@@ -25,10 +25,9 @@ export class GroupsComponent implements OnInit, ngAfterViewInit {
 
   ngOnInit() {      
     this.groupForm = this.formBuilder.group({
-      groupName: ['', [Validators.required]],
+      groupName: ['', [Validators.required, Validators.minLength(2)]],
       groupDescription: [''],
       tags: new FormArray([])
-
     });
 
     this.groupsService.getGroups()

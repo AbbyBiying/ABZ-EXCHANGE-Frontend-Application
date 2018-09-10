@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@ang
   styleUrls: ['./listings.component.scss']
 })
 export class ListingsComponent implements OnInit {
-
   listings = [];
   listingForm: any;
 
@@ -22,7 +21,7 @@ export class ListingsComponent implements OnInit {
   
   ngOnInit() {     
     this.listingForm = this.formBuilder.group({
-      listingName: ['', [Validators.required]],
+      listingName: ['', [Validators.required, Validators.minLength(2)]],
       listingDescription: [''],
       tags: new FormArray([])
 
