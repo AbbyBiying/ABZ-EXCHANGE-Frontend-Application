@@ -1,22 +1,23 @@
-<div class="signin-container" fxLayout="column" fxLayoutAlign="space-between center">   <div id="signin-form">
+<div class="signin-container" fxLayout="column" fxLayoutAlign="space-between center">   
+  <div id="signin-form">
 
     <div class="logo">
     </div>
 
-    <div class="title">Please sign in to <a routerLink="/">ABZ-EXCHANGE!</a></div>
+    <div class="title">Sign in to <a routerLink="/">ABZ-EXCHANGE!</a></div>
               
     <form *ngIf="signinForm" class="signin-form" name="signinForm" [formGroup]="signinForm" #f="ngForm">
 
       <mat-form-field>
         <input matInput #userEmail placeholder="Email" formControlName="userEmail" required>
-        <mat-error *ngIf="!signinForm.get('userEmail').valid && signinForm.get('userEmail').touched" class="alert alert-danger">
+        <mat-error *ngIf="signinForm.get('userEmail').invalid && signinForm.get('userEmail').touched" class="alert alert-danger">
           Please enter a valid email.     
         </mat-error>
 
       </mat-form-field>
       <mat-form-field>
         <input matInput #userPassword placeholder="Password" formControlName="userPassword" required>  
-        <mat-error *ngIf="!signinForm.get('userPassword').valid && signinForm.get('userPassword').touched" class="alert alert-danger">
+        <mat-error *ngIf="signinForm.get('userPassword').invalid && signinForm.get('userPassword').touched" class="alert alert-danger">
           Please enter a password.     
         </mat-error>      
       </mat-form-field>

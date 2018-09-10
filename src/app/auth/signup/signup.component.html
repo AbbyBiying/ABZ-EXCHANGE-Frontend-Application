@@ -1,59 +1,61 @@
 <div class="signup-container" fxLayout="column" fxLayoutAlign="space-between center">           
-  <div class="logo">
+  <div id="signup-form">
+
+    <div class="logo">
+    </div>
+
+    <div class="title">Sign up to <a routerLink="/">ABZ-EXCHANGE!</a></div>
+              
+    <form *ngIf="signupForm" class="signup-form" name="signupForm" [formGroup]="signupForm" #f="ngForm">
+      <!-- <mat-error *ngIf="isBadCredentials">
+        
+      </mat-error> -->
+
+      <mat-form-field>
+        <input matInput #userEmail placeholder="Email" formControlName="userEmail" [errorStateMatcher]="matcher" required>
+        <mat-error *ngIf="signupForm.get('userEmail').invalid && signupForm.get('userEmail').touched" class="alert alert-danger">
+          Please enter a valid email.     
+        </mat-error>
+    
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput #userPassword placeholder="Password" formControlName="userPassword" required>      
+        <mat-error *ngIf="signupForm.get('userPassword').invalid && signupForm.get('userPassword').touched" class="alert alert-danger">
+          Please enter a password.     
+        </mat-error>   
+      </mat-form-field>  
+
+      <mat-form-field>
+        <input matInput #userBio placeholder="Bio" formControlName="userBio">     
+      </mat-form-field>
+        
+      <mat-form-field>
+        <input matInput #userCity placeholder="City" formControlName="userCity" required>        
+        <mat-error *ngIf="!signupForm.get('userCity').valid && signupForm.get('userCity').touched" class="alert alert-danger">
+          Please enter a city.     
+        </mat-error>     
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput #userState placeholder="State" formControlName="userState" required>        <mat-error *ngIf="!signupForm.get('userState').valid && signupForm.get('userState').touched" class="alert alert-danger">
+          Please enter a state.     
+        </mat-error>     
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Existing Locations">
+          <mat-option *ngFor="let location of locations" [value]="location.city">
+            {{location.city}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <button mat-raised-button color="accent" class="submit-button" aria-label="SIGN IN"[disabled]="f.invalid" (click)="onSubmit()">
+        SIGN UP
+      </button>  
+    </form>
   </div>
-  <div class="title">Please sign up to <a routerLink="/">ABZ-EXCHANGE!</a></div>
-            
-  <form *ngIf="signupForm" class="signup-form" name="signupForm" [formGroup]="signupForm" #f="ngForm">
-    <!-- <mat-error *ngIf="isBadCredentials">
-      
-    </mat-error> -->
-    <p>
-      Form Status: {{ signupForm.status }}
-    </p>
-    <mat-form-field>
-      <input matInput #userEmail placeholder="Email" formControlName="userEmail" [errorStateMatcher]="matcher" required>
-      <mat-error *ngIf="!signupForm.get('userEmail').valid && signupForm.get('userEmail').touched" class="alert alert-danger">
-        Please enter a valid email.     
-      </mat-error>
-  
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput #userPassword placeholder="Password" formControlName="userPassword" required>      
-      <mat-error *ngIf="!signupForm.get('userPassword').valid && signupForm.get('userPassword').touched" class="alert alert-danger">
-        Please enter a password.     
-      </mat-error>   
-    </mat-form-field>  
-
-    <mat-form-field>
-      <input matInput #userBio placeholder="Bio" formControlName="userBio">     
-    </mat-form-field>
-      
-    <mat-form-field>
-      <input matInput #userCity placeholder="City" formControlName="userCity" required>        
-      <mat-error *ngIf="!signupForm.get('userCity').valid && signupForm.get('userCity').touched" class="alert alert-danger">
-        Please enter a city.     
-      </mat-error>     
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput #userState placeholder="State" formControlName="userState" required>        <mat-error *ngIf="!signupForm.get('userState').valid && signupForm.get('userState').touched" class="alert alert-danger">
-        Please enter a state.     
-      </mat-error>     
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-select placeholder="Existing Locations">
-        <mat-option *ngFor="let location of locations" [value]="location.city">
-          {{location.city}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-
-    <button mat-raised-button color="accent" class="submit-button" aria-label="SIGN IN"[disabled]="f.invalid" (click)="onSubmit()">
-      SIGN UP
-    </button>  
-  </form>
 </div>
 
 

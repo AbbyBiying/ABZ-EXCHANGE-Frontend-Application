@@ -29,6 +29,7 @@ import { MobileMenuModule } from './mobile-menu/mobile-menu.module';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { UsersComponent } from './users/users.component';
+import { HeaderComponent } from './header/header.component';
 
 const appRoutes: Routes = [
   {
@@ -71,6 +72,7 @@ const appRoutes: Routes = [
     HomeComponent,
     SignupComponent,
     SigninComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
