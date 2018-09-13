@@ -5,8 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthService } from '../auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-signin',
