@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth.service';
 import { LocationsService } from '../../services/locations.service';
+import { UsersService } from '../../services/users.service';
 
 export interface Location {
   city: string;
@@ -27,6 +28,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   signupFormErrors: any; 
   forbiddenEmailslist = ['example@example.com', 'test@test.com', 'test@example.com'];  
   forbiddenUserNames = ['test', 'TEST', 'Test', 'Tester', 'tester', 'TESTER'];
+  selectedFile: File;
   locations:Location[] = [];
   // locations: Location[] = [
   //   {city: 'New York', state: 'NY'},
@@ -42,7 +44,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
   constructor(
     private authService: AuthService,         
     private formBuilder: FormBuilder,
-    private locationsService: LocationsService, 
+    private locationsService: LocationsService,     
+    private usersService: UsersService, 
     private http: HttpClient
   ) { }
 
@@ -53,8 +56,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
       userPassword: ['', [Validators.required, Validators.minLength(5)]],
       userBio: [''],
       userAvatar: [''],
-      userCity: ['', [Validators.required]],
-      userState: ['', [Validators.required]],
+      userCity: [''],
+      userState: [''],
       userLocation: ['']
     });
 
@@ -113,16 +116,34 @@ export class SignupComponent implements OnInit, AfterViewInit {
     return promise;
   }
 
-  handleFileInput(files: FileList) {
-      if (files.length === 0) return;
-      const params = {
-          id: this.imgId
-      }; 
+  onFileChanged(event){
+    console.log(event);
+    const selectedFile = event.target.files[0];    
+    console.log(selectedFile);
+
+  }
+
+  onUpload() {
+    const uploadData = new FormData();
+
+    uploadData.append('image', this.selectedFile, this.selectedFile.name);
+
+   
   }
 
   onSubmit() {
-    console.log(this.signupForm);    
+    const data = this.signupForm.getRawValue();
+    console.log(data);    
+    if (data.location === undefined || data.location === null) {
+      data.userCity = 'New York';
+      data.userState = 'NY';
+    }
+    this.usersService.save(data).subscribe((response) => {
+
+        console.log(response);        
+
+      });    
     this.signupForm.reset();
 
-  }
+  } 
 }

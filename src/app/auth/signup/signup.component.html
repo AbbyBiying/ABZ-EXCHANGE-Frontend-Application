@@ -56,16 +56,18 @@
         <input matInput #userBio placeholder="Bio" formControlName="userBio">     
       </mat-form-field>
 
-      <mat-form-field>
-        <input matInput #userBio placeholder="Avatar" formControlName="userAvatar"> <label for="file" class="fileContainer">
-          Choose a PNG File to upload
-          <input type="file"
+      <!-- <mat-form-field> -->
+        <input type="file" (change)="onFileChanged($event)" formControlName="userAvatar">
+        
+        <!-- <label for="file" class="fileContainer" formControlName="userAvatar"> -->
+          <!-- Choose a PNG File to upload -->
+         <!--  <input type="file"
                 accept=".png"
-                id="file">
+                id="file"> -->
               <!--   [imgId]="signupForm.get('userAvatar').value"
                 (change)="handleFileInput($event.target.files)"> -->
-        </label>
-      </mat-form-field>
+        <!-- </label> -->
+      <!-- </mat-form-field> -->
         
     <!--   <mat-form-field>
         <input matInput #userCity placeholder="City" formControlName="userCity" required>        
@@ -82,7 +84,7 @@
       </mat-form-field> -->
 
       <mat-form-field>
-        <mat-select placeholder="Existing Locations" formControlName="userLocation" required>
+        <mat-select placeholder="Existing Locations" formControlName="userLocation">
           <mat-option *ngFor="let location of locations" [value]="location.city">
             {{location.city}}
           </mat-option>
