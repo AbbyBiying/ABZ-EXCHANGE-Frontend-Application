@@ -1,10 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AuthService } from '../auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select'; 
+
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -16,30 +20,40 @@ export class SigninComponent implements OnInit, AfterViewInit {
   isBadCredentials: boolean = false;
   signinForm: FormGroup;
   signinFormErrors: any;  
+  @ViewChild('email') email: ElementRef;
   
-  @ViewChild('userEmail') emailElement: ElementRef;
-  @ViewChild('userPassword') passwordElement: ElementRef;
-
   constructor(
     private authService: AuthService,         
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+
+    ){}
+  
 
   ngOnInit() {      
     this.signinForm = this.formBuilder.group({
-      userEmail: ['', [Validators.required, Validators.email]],
-      userPassword: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
     });
   }
 
   ngAfterViewInit() {
       setTimeout(()=> {
-        this.emailElement.nativeElement.focus();
+        this.email.nativeElement.focus();
       }, 500);
   }
 
-  onSubmit() {
-    console.log(this.signinForm);
+  onSignin() {
+    const data = this.signinForm.getRawValue();
+    // console.log(data);       
+
+    this.authService.signinUser({"user":data}).subscribe((response) => {
+
+       console.log(response);        
+
+    });    
+    this.signinForm.reset();
+
   }
 
 }

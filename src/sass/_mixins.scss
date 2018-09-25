@@ -1,0 +1,61 @@
+@mixin push--auto {
+  margin: { 
+    left: auto;
+    right: auto;
+  }
+}
+
+@mixin font-source-sans($size: false, $colour: false, $weight: false, $lh: false) {
+  @if $size { font-size: $size; }
+  @if $colour { color: $colour; }
+  @if $weight { font-weight: $weight; }
+  @if $lh { line-height: $lh; }
+}
+
+@mixin forms {
+  width: 384px;
+  max-width: 384px;
+  padding: 32px;
+  background: #FFFFFF;
+  text-align: center;
+
+  .logo {
+    width: 250px;    
+    @include push--auto;
+    margin-top: 1em;
+  }
+
+  .title {
+    font-size: 1.5em;
+    @include push--auto;    
+    margin-bottom: 1em;
+
+  }
+}
+
+@mixin input-placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+@mixin mmmq($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+        $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+        @content;
+    }
+  }
+}
+
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

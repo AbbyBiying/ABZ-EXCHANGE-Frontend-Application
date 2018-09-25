@@ -8,8 +8,16 @@ import { MobileMenuModule } from './mobile-menu/mobile-menu.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AuthService } from './auth/auth.service';
+import { AuthGuardService } from './auth/auth-guard.service';
 import { ConfigService } from './config/config.service';
+import { HttpClientModule } from '@angular/common/http';
+// import { JwtModule } from '@auth0/angular-jwt';
+// import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatButtonModule } from '@angular/material/button';
+
+// export function tokenGetter() {
+//   return localStorage.getItem('access_token');
+// }
 
 @NgModule({
   declarations: [
@@ -21,12 +29,22 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserModule,
     BrowserAnimationsModule,    
     AppRoutingModule,
-    MobileMenuModule,
+    MobileMenuModule, 
     MatButtonModule,
+    HttpClientModule,
+    // JwtModule.forRoot({
+    //   config: {
+    //     tokenGetter: () => {
+    //       return localStorage.getItem('access_token');
+    //     },
+    //     throwNoTokenError: true,
+    //     whitelistedDomains: ['localhost:3000', 'http://www.abzexchange.com/'],
+    //   }
+    // })
   ],  
   exports: [],
 
-  providers: [AuthService, ConfigService],
+  providers: [AuthService, ConfigService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

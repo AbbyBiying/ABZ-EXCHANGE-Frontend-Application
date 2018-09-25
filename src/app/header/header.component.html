@@ -1,5 +1,15 @@
 <div class="header-button">
-  <button mat-raised-button color="primary" routerLink="signin">SIGN IN</button>
-  <button mat-raised-button routerLink="signup">SIGN UP</button>
+  <div *ngIf="!authService.isAuthenticated()">
+    <button mat-raised-button color="primary" routerLink="signin">SIGN IN</button>
+    <button mat-raised-button routerLink="signup">SIGN UP</button>
+  </div>
+  
+  <div *ngIf="authService.isAuthenticated()">
+    <button mat-raised-button 
+            style="cursor: pointer;"
+            (click)="onSignOut()">
+          SIGN OUT
+    </button>
+
+  </div>
 </div>
-<app-mobile-menu></app-mobile-menu>

@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   signupForm: any;
   signupFormErrors: any; 
   forbiddenEmailslist = ['example@example.com', 'test@test.com', 'test@example.com'];  
-  forbiddenUserNames = ['test', 'TEST', 'Test', 'Tester', 'tester', 'TESTER'];
+  forbiddenemails = ['test', 'TEST', 'Test', 'Tester', 'tester', 'TESTER'];
   selectedFile: File;
   locations:Location[] = [];
   // locations: Location[] = [
@@ -37,24 +37,22 @@ export class SignupComponent implements OnInit, AfterViewInit {
   
   @Input() uploadUrl: string;
   @Input() imgId: string;
-
-  @ViewChild('userEmail') emailElement: ElementRef;
-  @ViewChild('userPassword') passwordElement: ElementRef;
-
+  @ViewChild('email') email: ElementRef;
   constructor(
     private authService: AuthService,         
     private formBuilder: FormBuilder,
     private locationsService: LocationsService,     
     private usersService: UsersService, 
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    ) {
+  }
 
   ngOnInit() {      
     this.signupForm = this.formBuilder.group({      
-      userName: ['', [Validators.required, Validators.minLength(2), this.forbiddenNames.bind(this)]],
-      userEmail: ['', [Validators.required, Validators.email], this.forbiddenEmails],
-      userPassword: ['', [Validators.required, Validators.minLength(5)]],
-      userBio: [''],
+      username: ['', [Validators.required, Validators.minLength(2), this.forbiddenNames.bind(this)]],
+      email: ['', [Validators.required, Validators.email], this.forbiddenEmails],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      bio: [''],
       userAvatar: [''],
       userCity: [''],
       userState: [''],
@@ -64,6 +62,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
     // this.signupForm.valueChanges.subscribe(
     //   (value) => console.log(value)
     // );
+
+
     this.signupForm.statusChanges.subscribe(
       (status) => console.log(status)
     );
@@ -80,7 +80,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
       setTimeout(()=> {
-        this.emailElement.nativeElement.focus();
+        this.email.nativeElement.focus();
       }, 500);
   }
   
@@ -93,11 +93,11 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   // AbstractControl is the base class for FormControl, FormGroup, and FormArray.
   forbiddenNames(control: AbstractControl): {[s: string]: boolean} {
-    // when there is forbidden name in the username input
-    if (this.forbiddenUserNames.includes(control.value)) {
+    // when there is forbidden name in the email input
+    if (this.forbiddenemails.includes(control.value)) {
       return {'ThisNameIsForbidden': true};
     }
-    // when there is no forbidden name in the username input
+    // when there is no forbidden name in the email input
     return null;
   }
 
@@ -117,7 +117,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   onFileChanged(event){
-    console.log(event);
     const selectedFile = event.target.files[0];    
     console.log(selectedFile);
 
@@ -131,16 +130,17 @@ export class SignupComponent implements OnInit, AfterViewInit {
    
   }
 
-  onSubmit() {
+  onSignup() {
+      
     const data = this.signupForm.getRawValue();
     console.log(data);    
-    if (data.location === undefined || data.location === null) {
-      data.userCity = 'New York';
-      data.userState = 'NY';
-    }
-    this.usersService.save(data).subscribe((response) => {
+    // if (data.location === undefined || data.location === null) {
+    //   data.userCity = 'New York';
+    //   data.userState = 'NY';
+    // }
+    this.authService.signupUser(data).subscribe((response) => {
 
-        console.log(response);        
+      console.log(response);        
 
       });    
     this.signupForm.reset();

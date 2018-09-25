@@ -14,7 +14,7 @@ export class UsersService {
 
   getUsers(): Observable<any> {
 
-    const headers = new HttpHeaders({'Accept': 'application/json'});
+    const headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
     
     return new Observable(observer => {
       //this.http.get('http://www.abzexchange.com/users',
@@ -32,19 +32,6 @@ export class UsersService {
           observer.complete();          
       });
     });
-  }
-
-  save(user): Observable<any> {
-    const headers = new HttpHeaders({'Accept': 'application/json'});
-    return new Observable(observer => {
-      this.http.post('http://localhost:3000/users', user).subscribe(event => {
-      console.log(event);          
-      observer.next(event);
-      observer.complete(); 
-    })
-    }  
-  }
+  };
 
 }
-
-

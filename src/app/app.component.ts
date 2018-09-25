@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
+import {environment} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 })
 export class AppComponent {
   title = 'ABZ-app';
-  constructor(){
-    
-  }
+
+  constructor(){}
+
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LocationsService } from '../services/locations.service';
 import { HttpClient } from '@angular/common/http';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-locations',

@@ -1,12 +1,8 @@
 @import './variables';
+@import './typography';
 @import './mixins';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "./theming";
-
-body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-}
 
 .mat-form-field{
   .alert-message {
@@ -27,14 +23,6 @@ body {
   padding: 32px;
 }
 
-#form {
-  width: 384px;
-  max-width: 384px;
-  padding: 32px;
-  background: #FFFFFF;
-  text-align: center;
-}
-
 .form-container {
   margin: 20px;
   flex: 1 0 auto;
@@ -47,27 +35,11 @@ body {
 
     .submit-button {
       width: 150px;
-      margin: 16px auto;
+      @include push--auto;    
+      margin-top: 1em;
       display: block;
     }
   }
 }
 
-#header-form {
-  width: 384px;
-  max-width: 384px;
-  padding: 32px;
-  background: #FFFFFF;
-  text-align: center;
-
-  .logo {
-    width: 250px;
-    margin: 12px 30px 30px 30px;
-  }
-
-  .title {
-    font-size: 20px;
-    margin: 16px 0 32px 0;
-  }
-}
  
