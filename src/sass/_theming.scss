@@ -1,0 +1,31 @@
+@import '~@angular/material/theming'; 
+@import './variables';
+
+@include mat-core();
+
+// Custom color maps
+$mat-white: (
+    500: white,
+    contrast: (
+        500: $black-87-opacity
+    )
+);
+
+$mat-black: (
+    500: black,
+    contrast: (
+        500: white,
+    )
+);
+
+$abz-app-primary: mat-palette($mat-indigo);
+$abz-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$abz-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$abz-app-theme: mat-light-theme($abz-app-primary, $abz-app-accent, $abz-app-warn);
+
+
+@include angular-material-theme($abz-app-theme);

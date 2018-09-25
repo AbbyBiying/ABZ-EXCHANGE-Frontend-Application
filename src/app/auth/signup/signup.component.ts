@@ -117,7 +117,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   onFileChanged(event){
-    console.log(event);
     const selectedFile = event.target.files[0];    
     console.log(selectedFile);
 

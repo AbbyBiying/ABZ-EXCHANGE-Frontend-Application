@@ -32,19 +32,16 @@ export class UsersService {
           observer.complete();          
       });
     });
-  }
+  };
 
   save(user): Observable<any> {
     const headers = new HttpHeaders({'Accept': 'application/json'});
     return new Observable(observer => {
       this.http.post('http://localhost:3000/users', user).subscribe(event => {
-      console.log(event);          
-      observer.next(event);
-      observer.complete(); 
-    })
-    }  
+        console.log(event);          
+        observer.next(event);
+        observer.complete(); 
+      });
+    });  
   }
-
 }
-
-

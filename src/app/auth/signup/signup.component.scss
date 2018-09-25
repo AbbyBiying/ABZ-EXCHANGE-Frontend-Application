@@ -1,0 +1,8 @@
+@import '../../../sass/variables';
+@import '../../../sass/typography';
+@import '../../../sass/mixins';
+@import "../../../sass/theming";
+
+#signup-form {
+  @include forms;
+}
