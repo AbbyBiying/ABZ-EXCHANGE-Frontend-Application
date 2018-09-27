@@ -34,7 +34,18 @@ export class UsersService {
     });
   };
 
-  save(user): Observable<any> {
+  signIn(user): Observable<any> {
+    const headers = new HttpHeaders({'Accept': 'application/json'});
+    return new Observable(observer => {
+      this.http.post('http://localhost:3000/users/sign_in', user).subscribe(event => {
+        console.log(event);          
+        observer.next(event);
+        observer.complete(); 
+      });
+    });  
+  }
+
+  signUp(user): Observable<any> {
     const headers = new HttpHeaders({'Accept': 'application/json'});
     return new Observable(observer => {
       this.http.post('http://localhost:3000/users', user).subscribe(event => {
@@ -44,4 +55,5 @@ export class UsersService {
       });
     });  
   }
+
 }

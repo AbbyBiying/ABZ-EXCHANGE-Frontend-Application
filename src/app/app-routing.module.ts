@@ -67,7 +67,7 @@ const appRoutes: Routes = [
 
     HttpClientModule,        
     FlexLayoutModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, 
 
   ],  
   exports: [RouterModule],
@@ -80,6 +80,7 @@ const appRoutes: Routes = [
     HomeComponent,
     SignupComponent,
     SigninComponent,
-  ]
+  ],
+  providers:    [  ],
 })
 export class AppRoutingModule { }

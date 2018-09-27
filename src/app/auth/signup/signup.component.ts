@@ -11,6 +11,8 @@ import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth.service';
 import { LocationsService } from '../../services/locations.service';
 import { UsersService } from '../../services/users.service';
+import { AngularTokenModule } from 'angular-token';
+import { AngularTokenService } from 'angular-token';
 
 export interface Location {
   city: string;
@@ -46,8 +48,12 @@ export class SignupComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private locationsService: LocationsService,     
     private usersService: UsersService, 
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private tokenService: AngularTokenService
+    ) {
+      
+
+  }
 
   ngOnInit() {      
     this.signupForm = this.formBuilder.group({      
@@ -64,6 +70,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
     // this.signupForm.valueChanges.subscribe(
     //   (value) => console.log(value)
     // );
+
+
     this.signupForm.statusChanges.subscribe(
       (status) => console.log(status)
     );
@@ -131,18 +139,27 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    const data = this.signupForm.getRawValue();
-    console.log(data);    
-    if (data.location === undefined || data.location === null) {
-      data.userCity = 'New York';
-      data.userState = 'NY';
-    }
-    this.usersService.save(data).subscribe((response) => {
+    this.tokenService.registerAccount({
+        login:                'example@example.org',
+        password:             'secretPassword',
+        passwordConfirmation: 'secretPassword'
+      }).subscribe(
+          res =>      console.log(res),
+          error =>    console.log(error)
+      );
+      
+    // const data = this.signupForm.getRawValue();
+    // console.log(data);    
+    // if (data.location === undefined || data.location === null) {
+    //   data.userCity = 'New York';
+    //   data.userState = 'NY';
+    // }
+    // this.usersService.signUp(data).subscribe((response) => {
 
-        console.log(response);        
+    //     console.log(response);        
 
-      });    
-    this.signupForm.reset();
+    //   });    
+    // this.signupForm.reset();
 
   } 
 }
