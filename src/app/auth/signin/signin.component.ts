@@ -25,8 +25,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
   signinForm: FormGroup;
   signinFormErrors: any;  
   
-  @ViewChild('userEmail') emailElement: ElementRef;
-  @ViewChild('userPassword') passwordElement: ElementRef;
+  @ViewChild('email') email: ElementRef;
+  @ViewChild('password') passwordElement: ElementRef;
 
   constructor(
     private authService: AuthService,         
@@ -34,41 +34,41 @@ export class SigninComponent implements OnInit, AfterViewInit {
     private usersService: UsersService, 
     private http: HttpClient,
     private tokenService: AngularTokenService
-    ){        }
+    ){}
   
 
   ngOnInit() {      
     this.signinForm = this.formBuilder.group({
-      userEmail: ['', [Validators.required, Validators.email]],
-      userPassword: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
     });
   }
 
   ngAfterViewInit() {
       setTimeout(()=> {
-        this.emailElement.nativeElement.focus();
+        this.email.nativeElement.focus();
       }, 500);
   }
 
   onSubmit() {  
 
-    // const data = this.signinForm.getRawValue();
-    // console.log(data);    
+    const data = this.signinForm.getRawValue();
+    console.log(data);    
 
-    // this.usersService.signIn(data).subscribe((response) => {
+    this.usersService.signIn(data).subscribe((response) => {
 
-    //   console.log(response);        
+      console.log(response);        
 
-    // });    
-    // this.signinForm.reset();
+    });    
+    this.signinForm.reset();
 
-      this.tokenService.signIn({
-        login:    'bi802802@gmail.com',
-        password: 'bi802802'
-        }).subscribe(
-            res =>      console.log(res),
-            error =>    console.log(error)
-        ); 
+      // this.tokenService.signIn({
+      //   email:    'bi802802@gmail.com',
+      //   password: 'bi802802'
+      //   }).subscribe(
+      //       res =>      console.log(res),
+      //       error =>    console.log(error)
+      //   ); 
   }
 
 }

@@ -40,8 +40,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
   @Input() uploadUrl: string;
   @Input() imgId: string;
 
-  @ViewChild('userEmail') emailElement: ElementRef;
-  @ViewChild('userPassword') passwordElement: ElementRef;
+  @ViewChild('email') email: ElementRef;
+  @ViewChild('password') password: ElementRef;
 
   constructor(
     private authService: AuthService,         
@@ -51,16 +51,14 @@ export class SignupComponent implements OnInit, AfterViewInit {
     private http: HttpClient,
     private tokenService: AngularTokenService
     ) {
-      
-
   }
 
   ngOnInit() {      
     this.signupForm = this.formBuilder.group({      
-      userName: ['', [Validators.required, Validators.minLength(2), this.forbiddenNames.bind(this)]],
-      userEmail: ['', [Validators.required, Validators.email], this.forbiddenEmails],
-      userPassword: ['', [Validators.required, Validators.minLength(5)]],
-      userBio: [''],
+      username: ['', [Validators.required, Validators.minLength(2), this.forbiddenNames.bind(this)]],
+      email: ['', [Validators.required, Validators.email], this.forbiddenEmails],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      bio: [''],
       userAvatar: [''],
       userCity: [''],
       userState: [''],
@@ -88,7 +86,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
       setTimeout(()=> {
-        this.emailElement.nativeElement.focus();
+        this.email.nativeElement.focus();
       }, 500);
   }
   
@@ -139,14 +137,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    this.tokenService.registerAccount({
-        login:                'example@example.org',
-        password:             'secretPassword',
-        passwordConfirmation: 'secretPassword'
-      }).subscribe(
-          res =>      console.log(res),
-          error =>    console.log(error)
-      );
       
     // const data = this.signupForm.getRawValue();
     // console.log(data);    

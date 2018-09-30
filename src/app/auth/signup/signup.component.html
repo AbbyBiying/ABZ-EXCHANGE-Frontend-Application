@@ -12,48 +12,48 @@
       </mat-error> -->
 
       <mat-form-field>
-        <input matInput #userEmail placeholder="Email" formControlName="userEmail" required [pattern]="emailPattern">
-        <mat-error *ngIf="signupForm.get('userEmail').invalid && signupForm.get('userEmail').touched" class="alert alert-danger">
-          <!-- <span *ngIf="signupForm.get('userEmail').errors.pattern"> -->
-          <span *ngIf="signupForm.get('userEmail').errors['emailIsForbidden']">
+        <input matInput #email placeholder="Email" formControlName="email" required [pattern]="emailPattern">
+        <mat-error *ngIf="signupForm.get('email').invalid && signupForm.get('email').touched" class="alert alert-danger">
+          <!-- <span *ngIf="signupForm.get('email').errors.pattern"> -->
+          <span *ngIf="signupForm.get('email').errors['emailIsForbidden']">
             No tester please!
           </span> 
         
-          <span *ngIf="signupForm.get('userEmail').errors['required'] || signupForm.get('userEmail').errors.email ">
+          <span *ngIf="signupForm.get('email').errors['required'] || signupForm.get('email').errors.email ">
             Please enter a valid email for email confirmation.  
           </span>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput #userName placeholder="Username" formControlName="userName" required>
-        <mat-error *ngIf="signupForm.get('userName').invalid && signupForm.get('userName').touched" class="alert alert-danger">
-          <span *ngIf="signupForm.get('userName').errors['ThisNameIsForbidden']">
+        <input matInput placeholder="Username" formControlName="username" required>
+        <mat-error *ngIf="signupForm.get('username').invalid && signupForm.get('username').touched" class="alert alert-danger">
+          <span *ngIf="signupForm.get('username').errors['ThisNameIsForbidden']">
             No tester please!
           </span> 
-          <span *ngIf="signupForm.get('userName').errors.minlength">
+          <span *ngIf="signupForm.get('username').errors.minlength">
             Username must be at least 2 characters long.  
           </span>
-          <span *ngIf="signupForm.get('userName').errors['required']">
+          <span *ngIf="signupForm.get('username').errors['required']">
             Please enter a valid username.   
           </span>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput #userPassword placeholder="Password" formControlName="userPassword" required>      
-        <mat-error *ngIf="signupForm.get('userPassword').invalid && signupForm.get('userPassword').touched" class="alert alert-danger">
-          <span *ngIf="signupForm.get('userPassword').errors.minlength">
+        <input matInput #password placeholder="Password" formControlName="password" required>      
+        <mat-error *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched" class="alert alert-danger">
+          <span *ngIf="signupForm.get('password').errors.minlength">
             Password must be at least 5 characters long.  
           </span>
-          <span *ngIf="signupForm.get('userPassword').errors['required']">
+          <span *ngIf="signupForm.get('password').errors['required']">
             Please enter a valid password.   
           </span>  
         </mat-error>   
       </mat-form-field>  
 
       <mat-form-field>
-        <input matInput #userBio placeholder="Bio" formControlName="userBio">     
+        <input matInput #userBio placeholder="Bio" formControlName="bio">     
       </mat-form-field>
 
       <!-- <mat-form-field> -->

@@ -27,9 +27,9 @@ import { AngularTokenModule } from 'angular-token';
     AngularTokenModule.forRoot({
       
 
-      signInPath: 'http://localhost:3000/api/v1/auth/sign_in',
-      signOutPath: 'http://localhost:3000/api/v1/auth/sign_out',
-      registerAccountPath: 'http://localhost:3000/api/v1/auth',
+      signInPath: 'http://localhost:3000/users/sign_in',
+      signOutPath: 'http://localhost:3000/users/sign_out',
+      registerAccountPath: 'http://localhost:3000/users',
 
       // signInPath: 'http://localhost:3000/users/sign_in',
       // signOutPath: 'http://localhost:3000/users/sign_out',

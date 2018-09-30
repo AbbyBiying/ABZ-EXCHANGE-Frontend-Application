@@ -14,7 +14,7 @@ export class UsersService {
 
   getUsers(): Observable<any> {
 
-    const headers = new HttpHeaders({'Accept': 'application/json'});
+    const headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
     
     return new Observable(observer => {
       //this.http.get('http://www.abzexchange.com/users',
@@ -35,7 +35,7 @@ export class UsersService {
   };
 
   signIn(user): Observable<any> {
-    const headers = new HttpHeaders({'Accept': 'application/json'});
+    const headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
     return new Observable(observer => {
       this.http.post('http://localhost:3000/users/sign_in', user).subscribe(event => {
         console.log(event);          
@@ -46,7 +46,7 @@ export class UsersService {
   }
 
   signUp(user): Observable<any> {
-    const headers = new HttpHeaders({'Accept': 'application/json'});
+    const headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
     return new Observable(observer => {
       this.http.post('http://localhost:3000/users', user).subscribe(event => {
         console.log(event);          
