@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from '../services/users.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-users',
@@ -10,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class UsersComponent implements OnInit {
   users = [];
 
-  constructor(private usersService: UsersService, private http: HttpClient) {          
+  constructor(private usersService: UsersService) {          
   }
 
   ngOnInit() {  

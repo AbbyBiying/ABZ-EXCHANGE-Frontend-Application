@@ -3,7 +3,7 @@
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">  
-    <!-- <a mat-menu-item routerLink="/" routerLinkActive="active-link">Home</a> -->
+    <a *ngIf="authService.isAuthenticated()" mat-menu-item routerLink="dashboard" routerLinkActive="active-link">Dashboard</a>
     <a mat-menu-item routerLink="users" routerLinkActive="active-link">Users</a>
     <a mat-menu-item routerLink="listings" routerLinkActive="active-link">Listings</a>
     <a mat-menu-item routerLink="locations" routerLinkActive="active-link">Locations</a>

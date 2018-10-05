@@ -10,10 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { ConfigService } from './config/config.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 // import { JwtModule } from '@auth0/angular-jwt';
 // import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatButtonModule } from '@angular/material/button';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
@@ -23,6 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
   declarations: [
     AppComponent,
     HeaderComponent,
+    DashboardComponent,
 
   ],
   imports: [

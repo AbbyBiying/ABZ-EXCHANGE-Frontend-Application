@@ -9,7 +9,8 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService implements OnInit {
   private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
-
+  token: any;
+  
   constructor(
     private router: Router,     
     private http: HttpClient,
@@ -18,32 +19,37 @@ export class AuthService implements OnInit {
   ) {}
 
   ngOnInit() {    
-
   }
 
   signinUser(user): Observable<any> {        
     return new Observable(observer => {
       this.http.post('http://localhost:3000/users/sign_in', user, { headers: this.headers }).subscribe(data => {
-        let authToken = data.token;
-        localStorage.setItem("authToken", authToken);
-        // console.log(authToken); 
-        console.log("User is signed in!");         
-        observer.next(data);    
-        this.router.navigate(['/']);
-        observer.complete(); 
+        if (data !== null){
+          this.token = data['token'];
+          localStorage.setItem("authToken", this.token);
+        
+          console.log("User is signed in!");         
+          observer.next(data);    
+          this.router.navigate(['/dashboard']);
+          observer.complete(); 
+        };
       });
     });  
   }
 
   signupUser(user): Observable<any> {
+
     return new Observable(observer => {
       this.http.post('http://localhost:3000/users', user, { headers: this.headers }).subscribe(data => {
-
-        console.log(data);            
-        console.log("User is signed up!");         
-        observer.next(data);
-        this.router.navigate(['/']);
-        observer.complete(); 
+        if (data !== null){
+          this.token = data['token'];
+          localStorage.setItem("authToken", this.token);
+        
+          console.log("User is signed up!");         
+          observer.next(data);
+          this.router.navigate(['/']);
+          observer.complete(); 
+        };
       });
     });  
   }

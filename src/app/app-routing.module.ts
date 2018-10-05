@@ -13,6 +13,8 @@ import { ListingsComponent } from './listings/listings.component';
 import { LocationsComponent } from './locations/locations.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { AuthGuardService } from './auth/auth-guard.service';
 
 // material
@@ -54,6 +56,12 @@ const appRoutes: Routes = [
   {
     path: 'signin',
     component: SigninComponent
+  },   
+  {
+    path: 'dashboard',
+    component: DashboardComponent,    
+    canActivate: [AuthGuardService]
+
   }, 
 ];
 

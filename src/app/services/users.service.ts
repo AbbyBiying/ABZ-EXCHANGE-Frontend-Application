@@ -8,20 +8,39 @@ import { ConfigService } from '../config/config.service';
   providedIn: 'root'
 })
 export class UsersService {
+  private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient, private configService: ConfigService) {          
   }
 
-  getUsers(): Observable<any> {
+  getUser(userId): Observable<any> {
+    
+    return new Observable(observer => {
+      //this.http.get('http://www.abzexchange.com/users',
 
-    const headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
+      this.http.get('http://localhost:3000/users/' + userId,
+      {
+        headers: this.headers 
+      })
+      .pipe(
+        catchError(this.configService.handleError)
+      )
+      .subscribe((response: HttpResponse<any>) => {
+          console.log(response);                
+          observer.next(response);
+          observer.complete();          
+      });
+    });
+  };
+
+  getUsers(): Observable<any> {
     
     return new Observable(observer => {
       //this.http.get('http://www.abzexchange.com/users',
 
       this.http.get('http://localhost:3000/users',
       {
-       headers: headers
+       headers: this.headers
       })
       .pipe(
         catchError(this.configService.handleError)

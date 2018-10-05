@@ -24,20 +24,18 @@ export interface Location {
 })
 export class SignupComponent implements OnInit, AfterViewInit {
   isBadCredentials: boolean = false;
-  signupForm: any;
+  signupForm: FormGroup;
+  location: FormGroup;
   signupFormErrors: any; 
   forbiddenEmailslist = ['example@example.com', 'test@test.com', 'test@example.com'];  
   forbiddenemails = ['test', 'TEST', 'Test', 'Tester', 'tester', 'TESTER'];
   selectedFile: File;
-  locations:Location[] = [];
-  // locations: Location[] = [
-  //   {city: 'New York', state: 'NY'},
-  //   {city: 'Irvine', state: 'CA'}
-  // ];
+  locations: Location[] = [];
   
   @Input() uploadUrl: string;
   @Input() imgId: string;
   @ViewChild('email') email: ElementRef;
+
   constructor(
     private authService: AuthService,         
     private formBuilder: FormBuilder,
@@ -52,17 +50,14 @@ export class SignupComponent implements OnInit, AfterViewInit {
       username: ['', [Validators.required, Validators.minLength(2), this.forbiddenNames.bind(this)]],
       email: ['', [Validators.required, Validators.email], this.forbiddenEmails],
       password: ['', [Validators.required, Validators.minLength(5)]],
+      avatar: [''],
       bio: [''],
-      userAvatar: [''],
-      userCity: [''],
-      userState: [''],
-      userLocation: ['']
+      location_id: [''],
+      location: this.formBuilder.group({
+        city: [''],
+        state: ['']
+      })
     });
-
-    // this.signupForm.valueChanges.subscribe(
-    //   (value) => console.log(value)
-    // );
-
 
     this.signupForm.statusChanges.subscribe(
       (status) => console.log(status)
@@ -73,9 +68,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
       .subscribe((locations) => {
         console.log(locations);        
         this.locations = locations;
-
       });  
-    
   }
 
   ngAfterViewInit(): void {
@@ -119,31 +112,27 @@ export class SignupComponent implements OnInit, AfterViewInit {
   onFileChanged(event){
     const selectedFile = event.target.files[0];    
     console.log(selectedFile);
-
   }
 
   onUpload() {
     const uploadData = new FormData();
 
-    uploadData.append('image', this.selectedFile, this.selectedFile.name);
-
-   
+    uploadData.append('image', this.selectedFile, this.selectedFile.name);   
   }
 
   onSignup() {
-      
     const data = this.signupForm.getRawValue();
-    console.log(data);    
-    // if (data.location === undefined || data.location === null) {
-    //   data.userCity = 'New York';
-    //   data.userState = 'NY';
-    // }
-    this.authService.signupUser(data).subscribe((response) => {
 
+    if (data.location.state === "" || data.location.city === "" || data.location_id === "" ) {
+      data.location_id = 1;
+    }
+    console.log(data);    
+
+    this.authService.signupUser({"user":data}).subscribe((response) => {
+ 
       console.log(response);        
 
       });    
     this.signupForm.reset();
-
   } 
 }
