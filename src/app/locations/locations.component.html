@@ -5,7 +5,7 @@
     <mat-card class="location-card">
       <mat-card-header>
         <div mat-card-avatar class="location-header-image"></div>
-        <mat-card-title>City: {{ location.city }}</mat-card-title>
+        <mat-card-title><a [routerLink]="['/locations', location.id]">City: {{ location.city }}</a></mat-card-title>
         <mat-card-subtitle>State: {{ location.state }}</mat-card-subtitle>
       </mat-card-header>
     </mat-card>

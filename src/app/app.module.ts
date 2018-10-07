@@ -14,7 +14,6 @@ import { HttpClientModule, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest 
 // import { JwtModule } from '@auth0/angular-jwt';
 // import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatButtonModule } from '@angular/material/button';
-import { DashboardComponent } from './dashboard/dashboard.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
@@ -24,8 +23,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    DashboardComponent,
-
   ],
   imports: [
     BrowserModule,

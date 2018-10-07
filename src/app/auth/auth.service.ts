@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService implements OnInit {
   private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
-  token: any;
+  token: string;
   
   constructor(
     private router: Router,     

@@ -9,12 +9,13 @@
     fxLayoutGap="5%">  
 
     <mat-card class="user-card" *ngFor="let user of users">
-
+        {{user|json}}
         <mat-card-header>        
           <div mat-card-avatar class="user-header-image"></div>
 
-          <mat-card-title>Username: {{ user.username }}</mat-card-title>
+          <mat-card-title><a [routerLink]="['/users', user.id]">Username: {{ user.username }}</a></mat-card-title>
         </mat-card-header> 
       </mat-card>  
   </div>
 </div>
+

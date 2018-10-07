@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { UsersComponent } from './users/users.component';
 import { GroupsComponent } from './groups/groups.component';
 import { HomeComponent } from './home/home.component';
@@ -14,8 +15,17 @@ import { LocationsComponent } from './locations/locations.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { UserComponent } from './user/user.component';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { GroupComponent } from './group/group.component';
+import { LocationComponent } from './location/location.component';
+import { ListingComponent } from './listing/listing.component';
+import { OffersComponent } from './offers/offers.component';
+import { OfferComponent } from './offer/offer.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditListingComponent } from './edit-listing/edit-listing.component';
+import { EditOfferComponent } from './edit-offer/edit-offer.component';
+import { EditGroupComponent } from './edit-group/edit-group.component';
 
 // material
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -32,23 +42,44 @@ const appRoutes: Routes = [
     path: '',
     component: HomeComponent
   },
-  {
-    path: 'users',
-    component: UsersComponent
+  
+  { path: 'users', component: UsersComponent, 
+
+    // children: [
+    // { path: ':id', component: UserComponent }
+    // ] 
   },
+  { path: 'users/:id', component: UserComponent },
+  { path: 'users/:id/edit', component: EditUserComponent },
   {
     path: 'listings',
     component: ListingsComponent
-  },
+  },  
+
+  { path: 'listings/:id', component: ListingComponent },
+  { path: 'listings/:id/edit', component: EditListingComponent},
+  {
+    path: 'offers',
+    component: OffersComponent
+  },   
+  { path: 'offers/:id', component: OfferComponent },
+  { path: 'offers/:id/edit', component: EditOfferComponent},
   {
     path: 'locations',
     component: LocationsComponent
   },
+
+  { path: 'locations/:id', component: LocationComponent },
+
   {
     path: 'groups',
     component: GroupsComponent,
     canActivate: [AuthGuardService]
   },
+
+  { path: 'groups/:id', component: GroupComponent, canActivate: [AuthGuardService]
+ },
+
   {
     path: 'signup',
     component: SignupComponent
@@ -62,7 +93,9 @@ const appRoutes: Routes = [
     component: DashboardComponent,    
     canActivate: [AuthGuardService]
 
-  }, 
+  },   
+  { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
+  { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({
@@ -83,14 +116,26 @@ const appRoutes: Routes = [
   ],  
   exports: [RouterModule],
 
-  declarations: [    
+  declarations: [  
+    ErrorPageComponent,    
+    DashboardComponent,
     UsersComponent,
-    ListingsComponent,
+    ListingsComponent,    
+    OffersComponent,
     GroupsComponent,
     LocationsComponent,
     HomeComponent,
     SignupComponent,
     SigninComponent,
+    UserComponent,    
+    GroupComponent,
+    LocationComponent,
+    ListingComponent,      
+    OfferComponent,
+    EditUserComponent,
+    EditListingComponent,
+    EditOfferComponent,
+    EditGroupComponent,
   ],
   providers:    [  ],
 })
