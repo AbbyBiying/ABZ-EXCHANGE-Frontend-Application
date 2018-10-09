@@ -1,3 +1,49 @@
-<p>
-  edit-group works!
-</p>
+<div class="form-container" fxLayout="column" fxLayoutAlign="space-between center">   
+  <div id="forms">
+
+    <div class="title">Create A New Group</div>
+              
+    <form *ngIf="groupForm" class="group-form" name="groupForm" [formGroup]="groupForm" #f="ngForm">
+
+      <mat-form-field>
+        <input matInput #name placeholder="Name" formControlName="name" required>
+        <mat-error *ngIf="groupForm.get('name').invalid && groupForm.get('name').touched" class="alert alert-danger">
+          <span *ngIf="groupForm.get('name').errors.minlength">
+            Group Name must be at least 2 characters long.  
+          </span>
+          <span *ngIf="groupForm.get('name').errors['required']">
+            Please enter a valid Group Name.   
+          </span>    
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput #description placeholder="Description" formControlName="description">
+
+      </mat-form-field>
+
+      <div formArrayName="tags">
+        <h4>Tags</h4>
+        <button mat-button
+          class="btn btn-default"
+          type="button"
+          (click)="onAddTags()">
+          Add Tags
+        </button>
+        <div
+          class="form-group"
+          *ngFor="let tagsControl of groupForm.get('tags').controls; let i = index">
+          <input type="text" class="form-control" [formControlName]="i"> 
+          <mat-error *ngIf="groupForm.get('tags').invalid && groupForm.get('tags').touched" class="alert alert-danger">
+            Please enter a valid tag.     
+          </mat-error>
+        </div>
+      </div>
+
+      <button mat-raised-button color="accent" class="submit-button" aria-label="SUBMIT" [disabled]="f.invalid" (click)="onSubmit()">
+        SUBMIT
+      </button>
+    </form>
+  </div>
+</div>

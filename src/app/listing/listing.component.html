@@ -1,3 +1,14 @@
-<p>
-  listing works!
-</p>
+<div *ngIf="listing$ | async as listing">
+  <h3>  
+    <p>Name: 
+      {{listing.name}}
+    </p>
+  </h3>
+  <div>
+    <label>Id: </label>{{ listing.id }}</div>
+  <div>
+  <div>
+    <label>Description: </label>{{ listing.description }}</div>
+  <div>
+
+</div>

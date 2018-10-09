@@ -30,7 +30,8 @@ export class UserComponent implements OnInit, OnDestroy {
           this.user.username = params['username'];
           this.user.bio = params['bio'];
           this.user.email = params['email'];
-
+          console.log(this.user);
+          console.log("user");
         }
       );
   }

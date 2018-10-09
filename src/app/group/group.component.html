@@ -1,3 +1,14 @@
-<p>
-  group works!
-</p>
+<div *ngIf="group$ | async as group">
+  <h3>  
+    <p>Name: 
+      {{group.name}}
+    </p>
+  </h3>
+  <div>
+    <label>Id: </label>{{ group.id }}</div>
+  <div>
+  <div>
+    <label>Description: </label>{{ group.description }}</div>
+  <div>
+
+</div>

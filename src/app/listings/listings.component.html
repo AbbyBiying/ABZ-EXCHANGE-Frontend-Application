@@ -1,62 +1,23 @@
-<div class="form-container" fxLayout="column" fxLayoutAlign="space-between center">   
-  <div id="forms">
-
-    <div class="title">Create A New Listing</div>
-              
-    <form *ngIf="listingForm" class="listing-form" name="listingForm" [formGroup]="listingForm" #f="ngForm">
-
-      <mat-form-field>
-        <input matInput #listingName placeholder="Listing Name" formControlName="listingName" required>
-        <mat-error *ngIf="listingForm.get('listingName').invalid && listingForm.get('listingName').touched" class="alert alert-danger">
-
-          <span *ngIf="listingForm.get('listingName').errors.minlength">
-            Listing Name must be at least 2 characters long.  
-          </span>
-          <span *ngIf="listingForm.get('listingName').errors['required']">
-            Please enter a valid Listing Name.   
-          </span>  
-        </mat-error>
-
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput #listingDescription placeholder="Listing Description" formControlName="listingDescription">
-
-      </mat-form-field>
-
-      <div formArrayName="tags">
-        <h4>Tags</h4>
-        <button mat-button
-          class="btn btn-default"
-          type="button"
-          (click)="onAddTags()">Add Tags</button>
-        <div
-          class="form-listing"
-          *ngFor="let tagsControl of listingForm.get('tags').controls; let i = index">
-          <input type="text" class="form-control" [formControlName]="i" required>        
-          <mat-error *ngIf="listingForm.get('tags').invalid && listingForm.get('tags').touched" class="alert alert-danger">
-            Please enter a valid tag.     
-          </mat-error>
-        </div>
-      </div>
-
-      <button mat-raised-button color="accent" class="submit-button" aria-label="SUBMIT" [disabled]="f.invalid" (click)="onSubmit()">
-        SUBMIT
-      </button>
-    </form>
-  </div>
-</div>
-
 <div class="index">
   <p>Listings: </p>
-  <div *ngFor="let listing of listings">
-    <!-- {{ listing |json }} -->
-    <mat-card class="listing-card">
-      <mat-card-header>
-        <div mat-card-avatar class="listing-header-image"></div>
-        <mat-card-title><a [routerLink]="['/listings', listing.id]">Name: {{ listing.name }}</a></mat-card-title>
-        <mat-card-subtitle>Description: {{ listing.description }}</mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
+
+  <div *ngFor="let listing of listings"
+    fxLayout="row" 
+    fxLayoutAlign="space-around center"
+    fxLayout.xs="column" 
+    fxLayoutWrap 
+    fxLayoutGap="5%">  
+    <a [routerLink]="['/listings', listing.id]">
+      <mat-card class="listing-card">
+        {{listing|json}}
+        <mat-card-header>        
+          <div mat-card-avatar class="listing-header-image"></div>
+
+          <mat-card-title>Name: {{ listing.name }}</mat-card-title>
+          <mat-card-title>Description: {{ listing.description }}</mat-card-title>
+
+        </mat-card-header> 
+      </mat-card>  
+    </a>
   </div>
 </div>

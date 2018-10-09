@@ -44,7 +44,6 @@ const appRoutes: Routes = [
   },
   
   { path: 'users', component: UsersComponent, 
-
     // children: [
     // { path: ':id', component: UserComponent }
     // ] 
@@ -54,9 +53,12 @@ const appRoutes: Routes = [
   {
     path: 'listings',
     component: ListingsComponent
+ 
+    children: [
+    { path: ':id', component: ListingComponent }
+    ] 
   },  
-
-  { path: 'listings/:id', component: ListingComponent },
+  // { path: 'listings/:id', component: ListingComponent },
   { path: 'listings/:id/edit', component: EditListingComponent},
   {
     path: 'offers',
@@ -79,6 +81,7 @@ const appRoutes: Routes = [
 
   { path: 'groups/:id', component: GroupComponent, canActivate: [AuthGuardService]
  },
+  { path: 'groups/:id/edit', component: EditGroupComponent },
 
   {
     path: 'signup',
@@ -95,13 +98,14 @@ const appRoutes: Routes = [
 
   },   
   { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
+  //wild card route, any unknown route, has to be the last route
   { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(appRoutes),    
+    RouterModule.forRoot(appRoutes,{ enableTracing: true } ),    
     MatIconModule,
     MatMenuModule,
     MatCardModule,
