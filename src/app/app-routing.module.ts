@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate, CanActivateChild } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -42,47 +42,43 @@ const appRoutes: Routes = [
     path: '',
     component: HomeComponent
   },
-  
-  { path: 'users', component: UsersComponent, 
-    // children: [
-    // { path: ':id', component: UserComponent }
-    // ] 
-  },
-  { path: 'users/:id', component: UserComponent },
-  { path: 'users/:id/edit', component: EditUserComponent },
-  {
-    path: 'listings',
-    component: ListingsComponent
- 
+  { path: 'users',     
+    canActivateChild: [AuthGuardService],
+    component: UsersComponent, 
     children: [
-    { path: ':id', component: ListingComponent }
+      { path: ':id', component: UserComponent },
+      { path: ':id/edit', component: EditUserComponent },
     ] 
-  },  
-  // { path: 'listings/:id', component: ListingComponent },
-  { path: 'listings/:id/edit', component: EditListingComponent},
-  {
-    path: 'offers',
-    component: OffersComponent
-  },   
-  { path: 'offers/:id', component: OfferComponent },
-  { path: 'offers/:id/edit', component: EditOfferComponent},
+  },
+  { path: 'listings',     
+    canActivateChild: [AuthGuardService],
+    component: ListingsComponent, 
+    children: [
+      { path: ':id', component: ListingComponent },
+      { path: ':id/edit', component: EditListingComponent },
+    ] 
+  },
+  { path: 'offers',     
+    canActivateChild: [AuthGuardService],
+    component: OffersComponent, 
+    children: [
+      { path: ':id', component: OfferComponent },
+      { path: ':id/edit', component: EditOfferComponent },
+    ] 
+  },
   {
     path: 'locations',
     component: LocationsComponent
   },
-
   { path: 'locations/:id', component: LocationComponent },
-
-  {
-    path: 'groups',
-    component: GroupsComponent,
-    canActivate: [AuthGuardService]
+  { path: 'groups',     
+    canActivateChild: [AuthGuardService],
+    component: GroupsComponent, 
+    children: [
+      { path: ':id', component: GroupComponent },
+      { path: ':id/edit', component: EditGroupComponent },
+    ] 
   },
-
-  { path: 'groups/:id', component: GroupComponent, canActivate: [AuthGuardService]
- },
-  { path: 'groups/:id/edit', component: EditGroupComponent },
-
   {
     path: 'signup',
     component: SignupComponent
@@ -105,7 +101,9 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(appRoutes,{ enableTracing: true } ),    
+    RouterModule.forRoot(appRoutes
+      // ,{ enableTracing: true } 
+      ),    
     MatIconModule,
     MatMenuModule,
     MatCardModule,
@@ -121,7 +119,6 @@ const appRoutes: Routes = [
   exports: [RouterModule],
 
   declarations: [  
-    ErrorPageComponent,    
     DashboardComponent,
     UsersComponent,
     ListingsComponent,    

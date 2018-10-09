@@ -14,7 +14,7 @@ import { HttpClientModule, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest 
 // import { JwtModule } from '@auth0/angular-jwt';
 // import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatButtonModule } from '@angular/material/button';
-
+import { ErrorPageComponent } from './error-page/error-page.component';
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
 // }
@@ -22,15 +22,17 @@ import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderComponent,    
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,    
-    AppRoutingModule,
     MobileMenuModule, 
     MatButtonModule,
-    HttpClientModule,
+    HttpClientModule,    
+    AppRoutingModule,
+
     // JwtModule.forRoot({
     //   config: {
     //     tokenGetter: () => {

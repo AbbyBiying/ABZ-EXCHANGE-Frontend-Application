@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, ParamMap } from '@angular/router';
+import { UsersService } from '../services/users.service';
+
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
+import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -13,15 +16,23 @@ export class UserComponent implements OnInit, OnDestroy {
   user: { id: number, username: string, email: string, bio: string }
   paramsSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+    private usersService: UsersService) { }
 
   ngOnInit() {
-    this.user = {
-      id: this.route.snapshot.params['id'],
-      username: this.route.snapshot.params['username'],
-      email: this.route.snapshot.params['email'],
-      bio: this.route.snapshot.params['bio']
-    };
+    this.user = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.usersService.getUser(params.get('id')))
+    );
+
+    // this.user = {
+    //   id: this.route.snapshot.params['id'],
+    //   username: this.route.snapshot.params['username'],
+    //   email: this.route.snapshot.params['email'],
+    //   bio: this.route.snapshot.params['bio']
+    // };
+
+
 
     this.paramsSubscription = this.route.params
       .subscribe(
