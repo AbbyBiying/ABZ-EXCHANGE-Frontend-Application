@@ -17,9 +17,9 @@ export class GroupsService {
     const headers = new HttpHeaders({'Accept': 'application/json'});
     
     return new Observable(observer => {
-      //this.http.get('http://www.abzexchange.com/groups',
+      this.http.get('http://www.abzexchange.com/groups',
 
-      this.http.get('http://localhost:3000/groups',
+      // this.http.get('http://localhost:3000/groups',
       {
        headers: headers
       })

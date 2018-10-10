@@ -50,6 +50,7 @@ const appRoutes: Routes = [
       { path: ':id/edit', component: EditUserComponent },
     ] 
   },
+  // { path: 'users/:id', component: UserComponent },
   { path: 'listings',     
     canActivateChild: [AuthGuardService],
     component: ListingsComponent, 

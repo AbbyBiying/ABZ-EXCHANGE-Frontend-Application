@@ -16,9 +16,9 @@ export class UsersService {
   getUsers(): Observable<any> {
     
     return new Observable(observer => {
-      //this.http.get('http://www.abzexchange.com/users',
+      this.http.get('http://www.abzexchange.com/users',
 
-      this.http.get('http://localhost:3000/users',
+      // this.http.get('http://localhost:3000/users',
       {
        headers: this.headers
       })
@@ -33,9 +33,9 @@ export class UsersService {
     });
   };
 
-  getUser(id: number | string) {
+  getUser(id: number | string): Observable<any>{
     return this.getUsers().pipe(
-      map((users) => users.find(user => user.id === +id))
+      map((users) => users.find(user => user.id === id))
     );
   }
 

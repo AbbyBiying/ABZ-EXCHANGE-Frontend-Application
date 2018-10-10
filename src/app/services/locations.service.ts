@@ -17,9 +17,9 @@ export class LocationsService {
     const headers = new HttpHeaders({'Accept': 'application/json'});
     
     return new Observable(observer => {
-      //this.http.get('http://www.abzexchange.com/locations',
+      this.http.get('http://www.abzexchange.com/locations',
 
-      this.http.get('http://localhost:3000/locations',
+      // this.http.get('http://localhost:3000/locations',
       {
        headers: headers
       })

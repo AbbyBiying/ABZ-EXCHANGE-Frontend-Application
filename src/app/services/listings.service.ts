@@ -17,9 +17,9 @@ export class ListingsService {
     const headers = new HttpHeaders({'Accept': 'application/json'});
     
     return new Observable(observer => {
-      //this.http.get('http://www.abzexchange.com/listings',
+      this.http.get('http://www.abzexchange.com/listings',
 
-      this.http.get('http://localhost:3000/listings',
+      // this.http.get('http://localhost:3000/listings',
       {
        headers: headers
       })

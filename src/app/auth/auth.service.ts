@@ -23,7 +23,8 @@ export class AuthService implements OnInit {
 
   signinUser(user): Observable<any> {        
     return new Observable(observer => {
-      this.http.post('http://localhost:3000/users/sign_in', user, { headers: this.headers }).subscribe(data => {
+      this.http.post('http://www.abzexchange.com/users/sign_in', user, { headers: this.headers }).subscribe(data => {
+      // this.http.post('http://localhost:3000/users/sign_in', user, { headers: this.headers }).subscribe(data => {
         if (data !== null){
           this.token = data['token'];
           localStorage.setItem("authToken", this.token);
@@ -40,7 +41,8 @@ export class AuthService implements OnInit {
   signupUser(user): Observable<any> {
 
     return new Observable(observer => {
-      this.http.post('http://localhost:3000/users', user, { headers: this.headers }).subscribe(data => {
+      this.http.post('http://www.abzexchange.com/users', user, { headers: this.headers }).subscribe(data => {
+      // this.http.post('http://localhost:3000/users', user, { headers: this.headers }).subscribe(data => {
         if (data !== null){
           this.token = data['token'];
           localStorage.setItem("authToken", this.token);
