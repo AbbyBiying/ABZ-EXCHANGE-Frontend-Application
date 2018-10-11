@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ListingsComponent } from './listings.component';
 import { ListingComponent } from '../listing/listing.component';
 import { EditListingComponent } from '../edit-listing/edit-listing.component';
+import { ListingsRoutingModule } from './listings-routing.module';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { EditListingComponent } from '../edit-listing/edit-listing.component';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ListingsRoutingModule
   ],
   declarations: [
     ListingsComponent,

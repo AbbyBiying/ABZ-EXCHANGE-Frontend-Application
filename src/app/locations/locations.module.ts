@@ -5,15 +5,18 @@ import { MatCardModule } from '@angular/material/card';
 
 import { LocationsComponent } from './locations.component';
 import { LocationComponent } from '../location/location.component';
+import { LocationsRoutingModule } from './locations-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    MatCardModule
+    MatCardModule,
+    LocationsRoutingModule
   ],
   declarations: [
-    LocationsComponent
+    LocationsComponent,
+    LocationComponent
   ]
 })
 export class LocationsModule { }

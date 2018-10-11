@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { UsersComponent } from './users.component';
 import { UserComponent } from '../user/user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
+import { UsersRoutingModule } from './users-routing.module';
 
 @NgModule({
   imports: [
@@ -29,11 +30,13 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UsersRoutingModule
   ],
   declarations: [
     UsersComponent,
-    UserComponent
+    UserComponent,
+    EditUserComponent,
   ]
 })
 export class UsersModule { }
