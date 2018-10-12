@@ -13,8 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 
 import { ListingsComponent } from './listings.component';
-import { ListingComponent } from '../listing/listing.component';
-import { EditListingComponent } from '../edit-listing/edit-listing.component';
+import { ListingDetailComponent } from '../listings/listing-detail/listing-detail.component';
+import { EditListingComponent } from '../listings/edit-listing/edit-listing.component';
 import { ListingsRoutingModule } from './listings-routing.module';
 
 @NgModule({
@@ -34,7 +34,7 @@ import { ListingsRoutingModule } from './listings-routing.module';
   ],
   declarations: [
     ListingsComponent,
-    ListingComponent,
+    ListingDetailComponent,
     EditListingComponent
   ]
 })

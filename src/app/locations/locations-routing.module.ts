@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuardService } from '../auth/auth-guard.service';
 import { LocationsComponent } from './locations.component';
-import { LocationComponent } from '../location/location.component';
+import { LocationDetailComponent } from './location-detail/location-detail.component';
 
 const locationsRoutes: Routes = [
   { path: '', component: LocationsComponent },  
-  { path: ':id', component: LocationComponent },
+  { path: ':id', component: LocationDetailComponent },
 ];
 
 @NgModule({

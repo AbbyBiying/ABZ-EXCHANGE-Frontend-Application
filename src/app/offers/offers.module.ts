@@ -13,8 +13,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 
 import { OffersComponent } from './offers.component';
-import { OfferComponent } from '../offer/offer.component';
-import { EditOfferComponent } from '../edit-offer/edit-offer.component';
+import { OfferDetailComponent } from './offer-detail/offer-detail.component';
+import { EditOfferComponent } from './edit-offer/edit-offer.component';
+import { OffersRoutingModule } from './offers-routing.module';
 
 @NgModule({
   imports: [
@@ -29,10 +30,11 @@ import { EditOfferComponent } from '../edit-offer/edit-offer.component';
     MatSelectModule,
     MatButtonModule,    
     ReactiveFormsModule,
+    OffersRoutingModule
   ],
   declarations: [
     OffersComponent,
-    OfferComponent,
+    OfferDetailComponent,
     EditOfferComponent
   ]
 })

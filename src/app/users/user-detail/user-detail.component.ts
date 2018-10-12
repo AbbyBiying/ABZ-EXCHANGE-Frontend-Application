@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, ParamMap } from '@angular/router';
-import { UsersService } from '../services/users.service';
+import { UsersService } from '../../services/users.service';
 
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -9,11 +9,11 @@ import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.scss']
 })
 
-export class UserComponent implements OnInit, OnDestroy {
+export class UserDetailComponent implements OnInit, OnDestroy {
   user: { id: number, username: string, email: string, bio: string }
 
   paramsSubscription: Subscription;

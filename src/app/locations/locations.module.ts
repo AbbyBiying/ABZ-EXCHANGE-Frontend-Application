@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 
 import { LocationsComponent } from './locations.component';
-import { LocationComponent } from '../location/location.component';
+import { LocationDetailComponent } from '../locations/location-detail/location-detail.component';
 import { LocationsRoutingModule } from './locations-routing.module';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { LocationsRoutingModule } from './locations-routing.module';
   ],
   declarations: [
     LocationsComponent,
-    LocationComponent
+    LocationDetailComponent
   ]
 })
 export class LocationsModule { }

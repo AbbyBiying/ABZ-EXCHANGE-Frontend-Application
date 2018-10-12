@@ -13,8 +13,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 
 import { GroupsComponent } from './groups.component';
-import { GroupComponent } from '../group/group.component';
-import { EditGroupComponent } from '../edit-group/edit-group.component';
+import { GroupDetailComponent } from '../groups/group-detail/group-detail.component';
+import { EditGroupComponent } from '../groups/edit-group/edit-group.component';
+import { GroupsRoutingModule } from './groups-routing.module';
 
 @NgModule({
   imports: [
@@ -29,10 +30,11 @@ import { EditGroupComponent } from '../edit-group/edit-group.component';
     MatSelectModule,
     MatButtonModule,    
     ReactiveFormsModule,
+    GroupsRoutingModule
   ],
   declarations: [
     GroupsComponent,
-    GroupComponent,
+    GroupDetailComponent,
     EditGroupComponent
   ]
 })

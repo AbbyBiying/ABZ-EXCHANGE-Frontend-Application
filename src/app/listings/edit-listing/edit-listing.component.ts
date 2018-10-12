@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ListingsService } from '../services/listings.service';
+import { ListingsService } from '../../services/listings.service';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 

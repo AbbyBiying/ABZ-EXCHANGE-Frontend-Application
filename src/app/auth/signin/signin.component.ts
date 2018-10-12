@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClient } from '@angular/common/http';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select'; 
 
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth.service';
@@ -25,10 +22,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
     private authService: AuthService,         
     private formBuilder: FormBuilder,
     private http: HttpClient,
-
     ){}
   
-
   ngOnInit() {      
     this.signinForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

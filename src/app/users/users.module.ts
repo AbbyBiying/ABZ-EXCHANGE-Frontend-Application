@@ -14,8 +14,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 
 import { UsersComponent } from './users.component';
-import { UserComponent } from '../user/user.component';
-import { EditUserComponent } from '../edit-user/edit-user.component';
+import { UserDetailComponent } from '../users/user-detail/user-detail.component';
+import { EditUserComponent } from '../users/edit-user/edit-user.component';
 import { UsersRoutingModule } from './users-routing.module';
 
 @NgModule({
@@ -35,7 +35,7 @@ import { UsersRoutingModule } from './users-routing.module';
   ],
   declarations: [
     UsersComponent,
-    UserComponent,
+    UserDetailComponent,
     EditUserComponent,
   ]
 })
