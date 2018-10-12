@@ -3,18 +3,17 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { MobileMenuModule } from './mobile-menu/mobile-menu.module';
-import { AppRoutingModule } from './app-routing.module';
+import { MobileMenuModule } from './core/mobile-menu/mobile-menu.module';
 
-import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthService } from './auth/auth.service';
 import { ConfigService } from './config/config.service';
+import { CoreModule } from './core/core.module';
 import { HttpClientModule, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 // import { JwtModule } from '@auth0/angular-jwt';
 // import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatButtonModule } from '@angular/material/button';
-import { ErrorPageComponent } from './error-page/error-page.component';
 // export function tokenGetter() {
 //   return localStorage.getItem('access_token');
 // }
@@ -22,30 +21,21 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,    
-    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,    
-    MobileMenuModule, 
     MatButtonModule,
-    HttpClientModule,    
-    AppRoutingModule,
-
-    // JwtModule.forRoot({
-    //   config: {
-    //     tokenGetter: () => {
-    //       return localStorage.getItem('access_token');
-    //     },
-    //     throwNoTokenError: true,
-    //     whitelistedDomains: ['localhost:3000', 'http://www.abzexchange.com/'],
-    //   }
-    // })
+    HttpClientModule,       
+    AuthModule,
+    CoreModule,
+    MobileMenuModule
   ],  
-  exports: [],
-
-  providers: [AuthService, ConfigService, AuthGuardService],
+  providers: [
+    AuthService,
+    ConfigService,
+    AuthGuardService,  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

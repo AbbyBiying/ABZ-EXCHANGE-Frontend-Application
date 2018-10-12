@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
-import {environment} from "../environments/environment";
+import { environment } from "../environments/environment";
+import { MobileMenuModule } from './core/mobile-menu/mobile-menu.module';
 
 @Component({
   selector: 'app-root',

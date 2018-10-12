@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes, CanActivate, CanActivateChild } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { HomeComponent } from './core/home/home.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
-
-import { HomeComponent } from './home/home.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { SigninComponent } from './auth/signin/signin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuardService } from './auth/auth-guard.service';
-
 // material
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -49,14 +44,7 @@ const appRoutes: Routes = [
     path: 'groups',     
     loadChildren: './groups/groups.module#GroupsModule'
   },
-  {
-    path: 'signup',
-    component: SignupComponent
-  },   
-  {
-    path: 'signin',
-    component: SigninComponent
-  },   
+
   {
     path: 'dashboard',
     component: DashboardComponent,    
@@ -70,10 +58,8 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    RouterModule.forRoot(appRoutes
-      // ,{ enableTracing: true } 
-      ),    
+    RouterModule.forRoot(appRoutes),
+      // ,{ enableTracing: true } ),    
     MatIconModule,
     MatMenuModule,
     MatCardModule,
@@ -90,9 +76,7 @@ const appRoutes: Routes = [
 
   declarations: [  
     DashboardComponent,
-    HomeComponent,
-    SignupComponent,
-    SigninComponent,
+    ErrorPageComponent
   ],
   providers:    [  ],
 })

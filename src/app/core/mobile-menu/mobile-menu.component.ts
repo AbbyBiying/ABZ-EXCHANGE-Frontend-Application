@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { Routes } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-mobile-menu',
