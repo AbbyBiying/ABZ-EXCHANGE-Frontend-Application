@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, CanActivate, CanActivateChild } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules, CanActivate, CanActivateChild } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -48,7 +48,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,{preloadingStrategy: PreloadAllModules}),
       // ,{ enableTracing: true } ),    
   ],  
   exports: [RouterModule],
