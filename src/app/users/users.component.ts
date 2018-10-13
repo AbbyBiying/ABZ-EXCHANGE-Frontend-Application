@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { User } from './user.model';
 import { UsersService } from '../services/users.service';
 
 @Component({
@@ -7,15 +9,14 @@ import { UsersService } from '../services/users.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  users = [];
+  users: User[];
 
-  constructor(private usersService: UsersService) {          
-  }
+  constructor(private usersService: UsersService) {}
 
   ngOnInit() {  
     this.usersService.getUsers()
       .subscribe(
-       (users: any[]) => this.users = users
+       (users: User[]) => this.users = users
       )  
     }
 }

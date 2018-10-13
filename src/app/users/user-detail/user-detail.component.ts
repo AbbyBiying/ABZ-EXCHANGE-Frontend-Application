@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { UsersService } from '../../services/users.service';
+import { User } from '../user.model';
 
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -14,8 +15,7 @@ import { switchMap, map } from 'rxjs/operators';
 })
 
 export class UserDetailComponent implements OnInit, OnDestroy {
-  user: { id: number, username: string, email: string, bio: string }
-
+  user: User;
   paramsSubscription: Subscription;
 
   constructor(
@@ -30,7 +30,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       id: this.route.snapshot.params['id'],
       username: this.route.snapshot.params['username'],
       email: this.route.snapshot.params['email'],
-      bio: this.route.snapshot.params['bio']
+      bio: this.route.snapshot.params['bio'],
+      location_id: this.route.snapshot.params['location_id'],
     };
 
     this.paramsSubscription = this.route.params

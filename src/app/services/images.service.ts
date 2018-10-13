@@ -7,18 +7,18 @@ import { ConfigService } from '../config/config.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class ImagesService {
   private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient, private configService: ConfigService) {          
   }
 
-  getUsers(): Observable<any> {
+  getImages(): Observable<any> {
     
     return new Observable(observer => {
-      this.http.get('http://www.abzexchange.com/users',
+      this.http.get('http://www.abzexchange.com/images',
 
-      // this.http.get('http://localhost:3000/users',
+      // this.http.get('http://localhost:3000/images',
       {
        headers: this.headers
       })
@@ -33,9 +33,9 @@ export class UsersService {
     });
   };
 
-  getUser(id: number): Observable<any>{
-    return this.getUsers().pipe(
-      map((users) => users.find(user => user.id === id))
+  getImage(id: number): Observable<any>{
+    return this.getImages().pipe(
+      map((images) => images.find(image => image.id === id))
     );
   }
 }

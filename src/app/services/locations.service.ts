@@ -1,14 +1,14 @@
 import { Injectable, Pipe } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { map, catchError, retry } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationsService {
-
+  private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
   constructor(private http: HttpClient, private configService: ConfigService) {          
   }
 
@@ -21,7 +21,7 @@ export class LocationsService {
 
       // this.http.get('http://localhost:3000/locations',
       {
-       headers: headers
+       headers: this.headers
       })
       .pipe(
         catchError(this.configService.handleError)
@@ -33,7 +33,10 @@ export class LocationsService {
       });
     });
   }
+
+  getLocation(id: number): Observable<any> {
+    return this.getLocations().pipe(
+      map((locations) => locations.find(location => location.id === id))
+      );
+  }
 }
-
-
-

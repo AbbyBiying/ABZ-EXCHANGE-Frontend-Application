@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { LocationsService } from '../services/locations.service';
-import { HttpClient } from '@angular/common/http';
+import { Location } from './location.model';
 
 @Component({
   selector: 'app-locations',
@@ -8,16 +9,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./locations.component.scss']
 })
 export class LocationsComponent implements OnInit { 
-  locations = [];
+  locations: Location[];
 
-  constructor(private locationsService: LocationsService, private http: HttpClient) {          
-  }
+  constructor(private locationsService: LocationsService) {}
 
-  ngOnInit() {  
+  ngOnInit() {      
     this.locationsService.getLocations()
-      .subscribe((locations) => {
-        console.log(locations);        
-        this.locations = locations;
-      })  
-    }
+      .subscribe(
+        (locations: Location[]) => this.locations = locations
+      )  
+  }
 }

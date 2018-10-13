@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { GroupsService } from '../services/groups.service';
-import { HttpClient } from '@angular/common/http';
+import { Group } from './group.model';
 
 @Component({
   selector: 'app-groups',
@@ -8,20 +9,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./groups.component.scss']
 })
 export class GroupsComponent implements OnInit {
+  groups: Group[];
 
-  groups = [];
-
-  constructor(
-    private groupsService: GroupsService, 
-    private http: HttpClient,     
-  ) {}
+  constructor(private groupsService: GroupsService) {}
 
   ngOnInit() {      
     this.groupsService.getGroups()
       .subscribe(
-        (groups: any[]) => this.groups = groups
+        (groups: Group[]) => this.groups = groups
       )  
   }
- 
 }
-   

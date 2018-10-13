@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { ListingsService } from '../services/listings.service';
-import { HttpClient } from '@angular/common/http';
+import { Listing } from './listing.model';
 
 @Component({
   selector: 'app-listings',
@@ -8,18 +9,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./listings.component.scss']
 })
 export class ListingsComponent implements OnInit {
-  listings = [];
+  listings: Listing[];
 
-  constructor(
-    private listingsService: ListingsService, 
-    private http: HttpClient,     
-  ) {}
+  constructor(private listingsService: ListingsService) {}
   
   ngOnInit() {     
-    
     this.listingsService.getListings()
       .subscribe(
-        (listings: any[]) => this.listings = listings
+        (listings: Listing[]) => this.listings = listings
       )  
   }
 }

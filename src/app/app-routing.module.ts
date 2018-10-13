@@ -14,6 +14,11 @@ const appRoutes: Routes = [
     path: '',
     component: HomeComponent
   },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,    
+    canActivate: [AuthGuardService]
+  },  
   { 
     path: 'users',     
     loadChildren: './users/users.module#UsersModule'
@@ -34,12 +39,18 @@ const appRoutes: Routes = [
     path: 'groups',     
     loadChildren: './groups/groups.module#GroupsModule'
   },
-
-  {
-    path: 'dashboard',
-    component: DashboardComponent,    
-    canActivate: [AuthGuardService]
-  },   
+  { 
+    path: 'exchanges',     
+    loadChildren: './exchanges/exchanges.module#ExchangesModule'
+  },
+  { 
+    path: 'successful-exchanges',     
+    loadChildren: './successful-exchanges/successful-exchanges.module#SuccessfulExchangesModule'
+  },
+  { 
+    path: 'images',     
+    loadChildren: './images/images.module#ImagesModule'
+  }, 
 
   { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
   // wild card route, any unknown route, has to be the last route
@@ -48,7 +59,9 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes,{preloadingStrategy: PreloadAllModules}),
+    RouterModule.forRoot(appRoutes
+      // ,{preloadingStrategy: PreloadAllModules}
+      ),
       // ,{ enableTracing: true } ),    
   ],  
   exports: [RouterModule],

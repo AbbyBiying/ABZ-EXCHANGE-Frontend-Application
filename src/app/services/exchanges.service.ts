@@ -7,18 +7,18 @@ import { ConfigService } from '../config/config.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class ExchangesService {
   private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient, private configService: ConfigService) {          
   }
 
-  getUsers(): Observable<any> {
+  getExchanges(): Observable<any> {
     
     return new Observable(observer => {
-      this.http.get('http://www.abzexchange.com/users',
+      // this.http.get('http://www.abzexchange.com/exchanges',
 
-      // this.http.get('http://localhost:3000/users',
+      this.http.get('http://localhost:3000/exchanges',
       {
        headers: this.headers
       })
@@ -33,9 +33,9 @@ export class UsersService {
     });
   };
 
-  getUser(id: number): Observable<any>{
-    return this.getUsers().pipe(
-      map((users) => users.find(user => user.id === id))
+  getExchange(id: number): Observable<any>{
+    return this.getExchanges().pipe(
+      map((exchanges) => exchanges.find(exchange => exchange.id === id))
     );
   }
 }
