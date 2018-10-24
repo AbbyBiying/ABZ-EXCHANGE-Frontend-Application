@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules, CanActivate, CanActivateChild } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 import { HomeComponent } from './core/home/home.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
@@ -39,10 +36,10 @@ const appRoutes: Routes = [
     path: 'groups',     
     loadChildren: './groups/groups.module#GroupsModule'
   },
-  { 
-    path: 'exchanges',     
-    loadChildren: './exchanges/exchanges.module#ExchangesModule'
-  },
+  // { 
+  //   path: 'exchanges',     
+  //   loadChildren: './exchanges/exchanges.module#ExchangesModule'
+  // },
   { 
     path: 'successful-exchanges',     
     loadChildren: './successful-exchanges/successful-exchanges.module#SuccessfulExchangesModule'

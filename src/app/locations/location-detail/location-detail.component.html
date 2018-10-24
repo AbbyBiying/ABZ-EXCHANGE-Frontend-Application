@@ -1,26 +1,43 @@
 <!-- <div *ngIf="group$ | async as group"> -->
 
   <div>
-    <label>Id: </label>{{ location.id }}</div>
-  <div>
+    <label>Id: </label>{{ location.id }} 
+  </div>
 
   <div>
-    <label>City: </label>{{ location.city }}</div>
+    <label>Number: </label>{{ location.number }} 
+  </div>
+  
   <div>
+    <label>Street: </label>{{ location.street }} 
+  </div>
     
   <div>
-    <label>State: </label>{{ location.state }}</div>
+    <label>City: </label>{{ location.city }} 
+  </div>
+    
   <div>
-
-  <div *ngIf="location.country">
-    <label>Country: </label>{{ location.country }}</div>
-  <div>  
-
-  <div>
-    <label>Longitude: </label>{{ location.longitude }}</div>
-  <div>
+    <label>State: </label>{{ location.state }} 
+  </div>
 
   <div>
-    <label>Latitude: </label>{{ location.latitude }}</div>
+    <label>Country: </label>{{ location.country }} 
+  </div>  
+
   <div>
+    <label>Longitude: </label>{{ location.longitude }} 
+  </div>
+
+  <div>
+    <label>Latitude: </label>{{ location.latitude }} 
+  </div>
+
+  <div>
+    <label>Created at: </label>{{ location.created_at }} 
+  </div>    
+
+  <div>
+    <label>Updated at: </label>{{ location.updated_at }}
+  </div>
+    
 <!-- </div> -->

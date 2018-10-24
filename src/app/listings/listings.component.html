@@ -1,21 +1,21 @@
 <div class="index">
   <p>Listings: </p>
 
-  <div *ngFor="let listing of listings"
+  <div *ngFor="let listing of listings; let i = index"
     fxLayout="row" 
     fxLayoutAlign="space-around center"
     fxLayout.xs="column" 
     fxLayoutWrap 
     fxLayoutGap="5%">  
-    <a [routerLink]="['/listings', listing.id]">
+    <a [routerLink]="['/listings', listing.id]" (click)="onEditItem(i)">
       <mat-card class="listing-card">
-        {{listing|json}}
+        {{ listing | json }}
         <mat-card-header>        
           <div mat-card-avatar class="listing-header-image"></div>
 
           <mat-card-title>Name: {{ listing.name }}</mat-card-title>
           <mat-card-title>Description: {{ listing.description }}</mat-card-title>
-
+          <mat-card-title>User Id: {{ listing.user_id }}</mat-card-title>
         </mat-card-header> 
       </mat-card>  
     </a>

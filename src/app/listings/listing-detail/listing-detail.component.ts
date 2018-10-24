@@ -30,6 +30,8 @@ export class ListingDetailComponent implements OnInit {
       name: this.route.snapshot.params['name'],
       user_id: this.route.snapshot.params['user_id'],
       description: this.route.snapshot.params['description'],
+      created_at: this.route.snapshot.params['created_at'],
+      updated_at: this.route.snapshot.params['updated_at'],
     };
 
     this.paramsSubscription = this.route.params
@@ -39,6 +41,8 @@ export class ListingDetailComponent implements OnInit {
           this.listing.name = params['name'];
           this.listing.user_id = params['user_id'];
           this.listing.description = params['description'];
+          this.listing.created_at = params['created_at'],
+          this.listing.updated_at = params['updated_at'],
           console.log(this.listing);
           console.log("Listing");
         }

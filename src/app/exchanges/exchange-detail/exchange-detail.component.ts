@@ -1,12 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Location } from '@angular/common';
 import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { ExchangesService } from '../../services/exchanges.service';
 import { Exchange } from '../exchange.model';
 
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-exchange',
@@ -29,6 +26,8 @@ export class ExchangeDetailComponent implements OnInit {
       id: this.route.snapshot.params['id'],
       listing_id: this.route.snapshot.params['listing_id'],
       offer_id: this.route.snapshot.params['offer_id'],
+      created_at: this.route.snapshot.params['created_at'],
+      updated_at: this.route.snapshot.params['updated_at'],
     };
 
     this.paramsSubscription = this.route.params
@@ -37,6 +36,8 @@ export class ExchangeDetailComponent implements OnInit {
           this.exchange.id = params['id'];
           this.exchange.listing_id = params['listing_id'];
           this.exchange.offer_id = params['offer_id'];
+          this.exchange.created_at = params['created_at'];
+          this.exchange.updated_at = params['updated_at'];
           console.log(this.exchange);
           console.log("Exchange");
         }

@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     hmr       : false,
-    serviceUrl : 'http://localhost:8888'
+    serviceUrl : 'http://www.abzexchange.com'
 };
 
 /*

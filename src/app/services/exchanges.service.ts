@@ -3,29 +3,21 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
+import { Exchange } from '../exchanges/exchange.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExchangesService {
-  private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
-
-  constructor(private http: HttpClient, private configService: ConfigService) {          
-  }
+  constructor(private http: HttpClient, private configService: ConfigService){}
 
   getExchanges(): Observable<any> {
-    
     return new Observable(observer => {
-      // this.http.get('http://www.abzexchange.com/exchanges',
-
-      this.http.get('http://localhost:3000/exchanges',
-      {
-       headers: this.headers
-      })
+      this.http.get("/exchanges")
       .pipe(
         catchError(this.configService.handleError)
       )
-      .subscribe((response: HttpResponse<any>) => {
+      .subscribe((response: HttpResponse<Exchange[]>) => {
           console.log(response);                
           observer.next(response);
           observer.complete();          

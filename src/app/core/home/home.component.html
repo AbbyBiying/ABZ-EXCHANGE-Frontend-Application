@@ -5,7 +5,8 @@
       <mat-card-subtitle>For people interested in barter trading
       Sign up and get a welcome email, you can:</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="assets/logos/ABZX01.png">    
+    <img #box (click)="myFunc($event)" mat-card-image src="assets/logos/ABZX01.png">  
+
     <mat-card-content>
       See successful exchanges
       Add your own listing

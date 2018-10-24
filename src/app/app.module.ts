@@ -22,7 +22,8 @@ import { HttpClientModule, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest 
     CoreModule,
     MobileMenuModule
   ],  
-
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,23 @@
-<p>
-  exchanges works!
-</p>
+<div class="index">
+    <p>exchanges: </p>
+  
+    <div *ngFor="let exchange of exchanges; let i = index"
+      fxLayout="row" 
+      fxLayoutAlign="space-around center"
+      fxLayout.xs="column" 
+      fxLayoutWrap 
+      fxLayoutGap="5%">  
+      <a [routerLink]="['/exchanges', exchange.id]" (click)="onEditItem(i)">
+        <mat-card class="exchange-card">
+          {{ exchange | json }}
+          <mat-card-header>        
+            <div mat-card-avatar class="exchange-header-image"></div>
+  
+            <mat-card-title>Name: {{ exchange.listing_id }}</mat-card-title>
+            <mat-card-title>Description: {{ exchange.offer_id }}</mat-card-title>
+            <mat-card-title>User Id: {{ exchange.user_id }}</mat-card-title>
+          </mat-card-header> 
+        </mat-card>  
+      </a>
+    </div>
+  </div>

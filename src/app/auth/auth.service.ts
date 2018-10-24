@@ -1,15 +1,13 @@
 import { Router } from '@angular/router';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { catchError, retry } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService implements OnInit {
-  private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
   token: string;
-  
+
   constructor(
     private router: Router,     
     private http: HttpClient,
@@ -21,8 +19,8 @@ export class AuthService implements OnInit {
 
   signinUser(user): Observable<any> {        
     return new Observable(observer => {
-      this.http.post('http://www.abzexchange.com/users/sign_in', user, { headers: this.headers }).subscribe(data => {
-      // this.http.post('http://localhost:3000/users/sign_in', user, { headers: this.headers }).subscribe(data => {
+      
+      this.http.post("/users/sign_in", user, {}).subscribe(data => {
         if (data !== null){
           this.token = data['token'];
           localStorage.setItem("authToken", this.token);
@@ -38,8 +36,7 @@ export class AuthService implements OnInit {
 
   signupUser(user): Observable<any> {
     return new Observable(observer => {
-      this.http.post('http://www.abzexchange.com/users', user, { headers: this.headers }).subscribe(data => {
-      // this.http.post('http://localhost:3000/users', user, { headers: this.headers }).subscribe(data => {
+      this.http.post("/users", user, {}).subscribe(data => {
         if (data !== null){
           this.token = data['token'];
           localStorage.setItem("authToken", this.token);

@@ -11,9 +11,8 @@ import { MatInputModule, } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 
-import { ExchangesComponent } from './exchanges.component';
-import { ExchangeDetailComponent } from '../exchanges/exchange-detail/exchange-detail.component';
-import { ExchangesRoutingModule } from './exchanges-routing.module';
+import { CommentsComponent } from './comments.component';
+import { CommentDetailComponent } from '../comments/comment-detail/comment-detail.component';
 
 @NgModule({
   imports: [
@@ -28,11 +27,10 @@ import { ExchangesRoutingModule } from './exchanges-routing.module';
     MatSelectModule,
     MatButtonModule,    
     ReactiveFormsModule,
-    ExchangesRoutingModule
   ],
   declarations: [
-    ExchangesComponent,
-    ExchangeDetailComponent,
+    CommentsComponent,
+    CommentDetailComponent,
   ]
 })
 export class ExchangesModule { }

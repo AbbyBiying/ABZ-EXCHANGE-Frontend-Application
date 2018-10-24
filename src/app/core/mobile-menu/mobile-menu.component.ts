@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
-import { Routes } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
@@ -22,6 +21,5 @@ export class MobileMenuComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
 

@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-dashboard',

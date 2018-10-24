@@ -24,11 +24,13 @@ export class SuccessfulExchangeDetailComponent implements OnInit, OnDestroy {
     private location: Location) { }
 
   ngOnInit(): void {
-    this.getSuccessfulExchange();
+    // this.getSuccessfulExchange();
 
     this.successfulexchange = {
       id: this.route.snapshot.params['id'],
       exchange_id: this.route.snapshot.params['exchange_id'],
+      created_at: this.route.snapshot.params['created_at'],
+      updated_at: this.route.snapshot.params['updated_at'],
     };
 
     this.paramsSubscription = this.route.params
@@ -36,17 +38,19 @@ export class SuccessfulExchangeDetailComponent implements OnInit, OnDestroy {
         (params: Params) => {
           this.successfulexchange.id = params['id'];
           this.successfulexchange.exchange_id = params['exchange_id'];
+          this.successfulexchange.created_at = params['created_at'];
+          this.successfulexchange.updated_at = params['updated_at'];
           console.log(this.successfulexchange);
           console.log("successfulexchange");
         }
       );
   }
 
-  getSuccessfulExchange(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.SuccessfulExchangesService.getSuccessfulExchange(id)
-      .subscribe(successfulexchange => this.successfulexchange = successfulexchange);
-  }
+  // getSuccessfulExchange(): void {
+  //   const id = +this.route.snapshot.paramMap.get('id');
+  //   this.SuccessfulExchangesService.getSuccessfulExchange(id)
+  //     .subscribe(successfulexchange => this.successfulexchange = successfulexchange);
+  // }
   
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();

@@ -29,7 +29,9 @@ export class ImageDetailComponent implements OnInit {
       id: this.route.snapshot.params['id'],
       name: this.route.snapshot.params['name'],
       description: this.route.snapshot.params['description'],
-      user_id: this.route.snapshot.params['user_id'],
+      user_id: this.route.snapshot.params['user_id'],      
+      created_at: this.route.snapshot.params['created_at'],
+      updated_at: this.route.snapshot.params['updated_at'],
     };
 
     this.paramsSubscription = this.route.params
@@ -39,7 +41,8 @@ export class ImageDetailComponent implements OnInit {
           this.image.name = params['name'];
           this.image.description = params['description'];
           this.image.user_id = params['user_id'];
-          
+          this.image.created_at = params['created_at'];
+          this.image.updated_at = params['updated_at'];
           console.log(this.image);
           console.log("Image");
         }

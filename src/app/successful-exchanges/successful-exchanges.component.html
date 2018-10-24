@@ -1,3 +1,20 @@
-<p>
-  successful-exchanges works!
-</p>
+<div class="index">
+    <p>Successful Exchanges: </p>
+  
+    <div *ngFor="let successfulexchange of successfulexchanges; let i = index"
+      fxLayout="row" 
+      fxLayoutAlign="space-around center"
+      fxLayout.xs="column" 
+      fxLayoutWrap 
+      fxLayoutGap="5%">  
+        <mat-card class="successful-exchanges-card">
+          {{ successfulexchange | json }}
+          <!-- <app-successfulexchange></app-successfulexchange> -->
+          <!-- <mat-card-header>        
+            <div mat-card-avatar class="successful-exchanges-header-image"></div>
+  
+            <mat-card-title>Exchange Id: {{ successfulexchange.exchange_id }}</mat-card-title>
+          </mat-card-header>  -->
+        </mat-card>  
+    </div>
+  </div>

@@ -1,3 +1,23 @@
-<p>
-  exchange-detail works!
-</p>
+<!-- <div *ngIf="exchange$ | async as exchange"> -->
+
+  <div>
+    <label>Id: </label>{{ exchange.id }} 
+  </div>
+
+  <div>
+    <label>Listing Id: </label>{{ exchange.listing_id }} 
+  </div>
+
+  <div>
+    <label>Offer Id: </label>{{ exchange.offer_id }} 
+  </div>
+    
+  <div>
+    <label>Created at: </label>{{ exchange.created_at }} 
+  </div>
+    
+  <div>
+    <label>Updated at: </label>{{ exchange.updated_at }} 
+  </div>
+    
+<!-- </div> -->

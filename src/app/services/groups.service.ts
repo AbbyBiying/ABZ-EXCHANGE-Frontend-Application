@@ -3,30 +3,21 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
+import { Group } from '../groups/group.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupsService {
-  private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
-  constructor(private http: HttpClient, private configService: ConfigService) {          
-  }
+  constructor(private http: HttpClient, private configService: ConfigService){}
 
-  getGroups(): Observable<any> {
-
-    const headers = new HttpHeaders({'Accept': 'application/json'});
-    
+  getGroups(): Observable<any> {    
     return new Observable(observer => {
-      this.http.get('http://www.abzexchange.com/groups',
-
-      // this.http.get('http://localhost:3000/groups',
-      {
-       headers: this.headers
-      })
+      this.http.get("/groups")
       .pipe(
         catchError(this.configService.handleError)
       )
-      .subscribe((response: HttpResponse<any>) => {
+      .subscribe((response: HttpResponse<Group[]>) => {
           console.log(response);                
           observer.next(response);
           observer.complete();

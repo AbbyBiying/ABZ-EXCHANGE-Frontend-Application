@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
-import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -45,5 +42,4 @@ export class SigninComponent implements OnInit, AfterViewInit {
     });    
     this.signinForm.reset();
   }
-
 }

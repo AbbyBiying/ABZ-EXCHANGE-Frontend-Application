@@ -3,29 +3,22 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
+import { Image } from '../images/image.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImagesService {
-  private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
-
   constructor(private http: HttpClient, private configService: ConfigService) {          
   }
 
   getImages(): Observable<any> {
-    
     return new Observable(observer => {
-      this.http.get('http://www.abzexchange.com/images',
-
-      // this.http.get('http://localhost:3000/images',
-      {
-       headers: this.headers
-      })
+      this.http.get("/images")
       .pipe(
         catchError(this.configService.handleError)
       )
-      .subscribe((response: HttpResponse<any>) => {
+      .subscribe((response: HttpResponse<Image[]>) => {
           console.log(response);                
           observer.next(response);
           observer.complete();          

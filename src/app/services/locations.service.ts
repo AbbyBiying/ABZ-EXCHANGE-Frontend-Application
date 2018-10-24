@@ -3,31 +3,22 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
+import { Location } from '../locations/location.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationsService {
-  private headers = new HttpHeaders({'Accept': 'application/json', 'Content-Type': 'application/json'});
   constructor(private http: HttpClient, private configService: ConfigService) {          
   }
 
-  getLocations(): Observable<any> {
-
-    const headers = new HttpHeaders({'Accept': 'application/json'});
-    
+  getLocations(): Observable<any> {    
     return new Observable(observer => {
-      this.http.get('http://www.abzexchange.com/locations',
-
-      // this.http.get('http://localhost:3000/locations',
-      {
-       headers: this.headers
-      })
+      this.http.get("/locations")
       .pipe(
         catchError(this.configService.handleError)
       )
-      .subscribe((response: HttpResponse<any>) => {
-         // console.log(response);                
+      .subscribe((response: HttpResponse<Location[]>) => {
           observer.next(response);
           observer.complete();
       });

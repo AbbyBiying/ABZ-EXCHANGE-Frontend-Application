@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth.service';
 import { LocationsService } from '../../services/locations.service';
-import { UsersService } from '../../services/users.service';
 
 export interface Location {
   city: string;
@@ -36,7 +34,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
     private authService: AuthService,         
     private formBuilder: FormBuilder,
     private locationsService: LocationsService,     
-    private usersService: UsersService, 
     private http: HttpClient,
     ) {
   }

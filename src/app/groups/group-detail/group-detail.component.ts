@@ -1,12 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Location } from '@angular/common';
 import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { GroupsService } from '../../services/groups.service';
 import { Group } from '../group.model';
 
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-group',
@@ -30,6 +27,8 @@ export class GroupDetailComponent implements OnInit {
       name: this.route.snapshot.params['name'],
       user_id: this.route.snapshot.params['user_id'],
       description: this.route.snapshot.params['description'],
+      created_at: this.route.snapshot.params['created_at'],
+      updated_at: this.route.snapshot.params['updated_at'],
     };
 
     this.paramsSubscription = this.route.params
@@ -39,6 +38,8 @@ export class GroupDetailComponent implements OnInit {
           this.group.name = params['name'];
           this.group.user_id = params['user_id'];
           this.group.description = params['description'];
+          this.group.created_at = params['created_at'],
+          this.group.updated_at = params['updated_at'],
           console.log(this.group);
           console.log("Group");
         }

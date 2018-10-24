@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuardService } from '../auth/auth-guard.service';
 import { ExchangesComponent } from './exchanges.component';
 import { ExchangeDetailComponent } from './exchange-detail/exchange-detail.component';
 

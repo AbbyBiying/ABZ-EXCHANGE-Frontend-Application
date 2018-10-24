@@ -1,9 +1,7 @@
-import { Injectable, Injector } from '@angular/core';
-import { HttpClient, HttpEvent, HttpErrorResponse, HttpResponse, HttpHandler, HttpRequest, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class ConfigService {

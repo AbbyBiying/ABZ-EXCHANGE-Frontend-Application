@@ -7,7 +7,6 @@ import { SuccessfulExchangeDetailComponent } from '../successful-exchanges/succe
  
 const SuccessfulExchangesRoutes: Routes = [
   { path: '', component: SuccessfulExchangesComponent },  
-  { path: ':id', component: SuccessfulExchangeDetailComponent },
 ];
 
 @NgModule({
