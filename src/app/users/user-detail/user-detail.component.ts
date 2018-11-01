@@ -4,9 +4,7 @@ import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { User } from '../user.model';
 
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { switchMap, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -32,6 +30,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       email: this.route.snapshot.params['email'],
       bio: this.route.snapshot.params['bio'],
       location_id: this.route.snapshot.params['location_id'],
+      location: this.route.snapshot.params['location'],
       created_at: this.route.snapshot.params['created_at'],
       updated_at: this.route.snapshot.params['updated_at'],
     };
@@ -44,6 +43,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
           this.user.bio = params['bio'];
           this.user.email = params['email'];
           this.user.location_id = params['location_id'];
+          this.user.location = params['location'];
           this.user.created_at = params['created_at'];
           this.user.updated_at = params['updated_at'];
           console.log(this.user);

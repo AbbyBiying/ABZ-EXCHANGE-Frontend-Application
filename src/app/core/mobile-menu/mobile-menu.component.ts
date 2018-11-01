@@ -10,8 +10,8 @@ import { AuthService } from '../../auth/auth.service';
 export class MobileMenuComponent implements OnInit {
   state: string = "inactive";
   
-  @ViewChild(MatMenu) menu: MatMenu;
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+  @ViewChild(MatMenu, {static: false}) menu: MatMenu;
+  @ViewChild(MatMenuTrigger, {static: false}) trigger: MatMenuTrigger;
   
   constructor(private eRef: ElementRef, private authService: AuthService){}
   

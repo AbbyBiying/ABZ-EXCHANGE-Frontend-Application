@@ -10,6 +10,21 @@
         <mat-card class="successful-exchanges-card">
           {{ successfulexchange | json }}
           <!-- <app-successfulexchange></app-successfulexchange> -->
+          <div>
+            <label>Id: </label>{{ successfulexchange.id }} 
+          </div>
+          
+          <div>
+            <label>Exchange Id: </label>{{ successfulexchange.exchange_id }} 
+          </div>
+            
+          <div>
+            <label>Created at: </label>{{ successfulexchange.created_at }} 
+          </div>
+        
+          <div>
+            <label>Updated at: </label>{{ successfulexchange.updated_at }} 
+          </div>              
           <!-- <mat-card-header>        
             <div mat-card-avatar class="successful-exchanges-header-image"></div>
   

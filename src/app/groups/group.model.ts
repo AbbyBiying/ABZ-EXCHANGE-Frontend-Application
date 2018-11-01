@@ -6,6 +6,6 @@ export class Group {
     public description: string, 
     public created_at: string, 
     public updated_at: string, 
-    // public location_id: string
+    public location_id: string
     ) {}
 }

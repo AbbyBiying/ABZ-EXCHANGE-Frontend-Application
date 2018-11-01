@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from '../auth.service';
+import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signin',
@@ -13,12 +15,13 @@ export class SigninComponent implements OnInit, AfterViewInit {
   isBadCredentials: boolean = false;
   signinForm: FormGroup;
   signinFormErrors: any;  
-  @ViewChild('email') email: ElementRef;
+  @ViewChild('email', {static: false}) email: ElementRef;
   
   constructor(
     private authService: AuthService,         
     private formBuilder: FormBuilder,
     private http: HttpClient,
+    private spinner: NgxSpinnerService
     ){}
   
   ngOnInit() {      
@@ -26,6 +29,13 @@ export class SigninComponent implements OnInit, AfterViewInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
+
+    this.signinForm.statusChanges.pipe(
+      debounceTime(1000),
+      distinctUntilChanged())
+      .subscribe(
+        (status) => console.log("Showing debounced input status: " + status)
+      );
   }
 
   ngAfterViewInit() {
@@ -36,10 +46,14 @@ export class SigninComponent implements OnInit, AfterViewInit {
 
   onSignin() {
     const data = this.signinForm.getRawValue();
-
+    this.spinner.show();
     this.authService.signinUser({"user":data}).subscribe((response) => {
       console.log(response);        
     });    
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);    
+
     this.signinForm.reset();
   }
 }

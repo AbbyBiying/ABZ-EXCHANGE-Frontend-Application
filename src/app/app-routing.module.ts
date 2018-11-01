@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, PreloadAllModules, CanActivate, CanActivateChild } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
 import { HomeComponent } from './core/home/home.component';
 import { ErrorPageComponent } from './error-page/error-page.component';

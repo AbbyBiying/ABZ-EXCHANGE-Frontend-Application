@@ -6,17 +6,24 @@
     fxLayoutAlign="space-around center"
     fxLayout.xs="column" 
     fxLayoutWrap 
-    fxLayoutGap="5%">  
+    fxLayoutGap="5%"> 
+    <!-- {{ listing |json}} -->
     <a [routerLink]="['/listings', listing.id]" (click)="onEditItem(i)">
       <mat-card class="listing-card">
-        {{ listing | json }}
         <mat-card-header>        
           <div mat-card-avatar class="listing-header-image"></div>
 
-          <mat-card-title>Name: {{ listing.name }}</mat-card-title>
-          <mat-card-title>Description: {{ listing.description }}</mat-card-title>
-          <mat-card-title>User Id: {{ listing.user_id }}</mat-card-title>
+          <mat-card-title>Name: {{ listing.name }}</mat-card-title>        
         </mat-card-header> 
+
+        <mat-card-content>
+          <p>
+            Description: {{ listing.description }}
+          </p>
+        </mat-card-content>
+        <!-- <img mat-card-image src="{{listing.avatar_file_name}}"  alt="{{listing.name}}"> -->
+        <mat-card-actions>User Id: {{ listing.user_id }}</mat-card-actions>
+
       </mat-card>  
     </a>
   </div>

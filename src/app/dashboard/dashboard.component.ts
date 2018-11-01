@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription } from 'rxjs';
+import { User } from '../users/user.model';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,19 +11,32 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  user: { id: number, username: string, email: string, bio: string }
+  user: User;
+
   paramsSubscription: Subscription;
   private id: number;
 
-  constructor(private route: ActivatedRoute) { }
-  
+  constructor(
+    private route: ActivatedRoute,    
+    private usersService: UsersService,
+    private spinner: NgxSpinnerService
+    ) {}
   
   ngOnInit() {
+    this.spinner.show();    
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);  
+
     this.user = {
       id: this.route.snapshot.params['id'],
       username: this.route.snapshot.params['username'],
       email: this.route.snapshot.params['email'],
-      bio: this.route.snapshot.params['bio']
+      bio: this.route.snapshot.params['bio'],
+      location_id: this.route.snapshot.params['location_id'],
+      location: this.route.snapshot.params['location'],
+      created_at: this.route.snapshot.params['created_at'],
+      updated_at: this.route.snapshot.params['updated_at'],      
     };
 
     this.paramsSubscription = this.route.params
@@ -29,13 +45,23 @@ export class DashboardComponent implements OnInit {
           this.user.id = params['id'];
           this.user.username = params['username'];
           this.user.bio = params['bio'];
-          this.user.email = params['email'];
+          this.user.email = params['email'];          
+          this.user.location_id = params['location_id'];          
+          this.user.location = params['location'];          
+          this.user.created_at = params['created_at'];
+          this.user.updated_at = params['updated_at'];
           console.log(this.user);
           console.log("user");
         }
       );
   }
 
+  getUser(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.usersService.getUser(id)
+      .subscribe(user => this.user = user);
+  }
+  
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
   }

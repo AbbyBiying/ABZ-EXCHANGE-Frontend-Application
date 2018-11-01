@@ -33,4 +33,4 @@ import { CommentDetailComponent } from '../comments/comment-detail/comment-detai
     CommentDetailComponent,
   ]
 })
-export class ExchangesModule { }
+export class CommentsModule { }

@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { Location } from '../../locations/location.model';
 import { AuthService } from '../auth.service';
 import { LocationsService } from '../../services/locations.service';
 
@@ -19,49 +22,55 @@ export interface Location {
 export class SignupComponent implements OnInit, AfterViewInit {
   isBadCredentials: boolean = false;
   signupForm: FormGroup;
-  location: FormGroup;
+  location: Location;
   signupFormErrors: any; 
   forbiddenEmailslist = ['example@example.com', 'test@test.com', 'test@example.com'];  
   forbiddenemails = ['test', 'TEST', 'Test', 'Tester', 'tester', 'TESTER'];
   selectedFile: File;
-  locations: Location[] = [];
   
   @Input() uploadUrl: string;
   @Input() imgId: string;
-  @ViewChild('email') email: ElementRef;
+  @ViewChild('email', {static: false}) email: ElementRef;
 
   constructor(
     private authService: AuthService,         
     private formBuilder: FormBuilder,
     private locationsService: LocationsService,     
-    private http: HttpClient,
+    private http: HttpClient, 
+    private spinner: NgxSpinnerService
     ) {
   }
 
   ngOnInit() {      
     this.signupForm = this.formBuilder.group({      
-      username: ['', [Validators.required, Validators.minLength(2), this.forbiddenNames.bind(this)]],
       email: ['', [Validators.required, Validators.email], this.forbiddenEmails],
+      username: ['', [Validators.required, Validators.minLength(2), this.forbiddenNames.bind(this)]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       avatar: [''],
       bio: [''],
       location_id: [''],
       location: this.formBuilder.group({
+        number: [''],
+        street: [''],
         city: [''],
-        state: ['']
+        state: [''],
+        country: ['']
       })
     });
 
-    this.signupForm.statusChanges.subscribe(
-      (status) => console.log(status)
-    );
+    this.signupForm.statusChanges.pipe(
+      debounceTime(1000),
+      distinctUntilChanged())
+      .subscribe(
+        (status) => console.log("Showing debounced input status: " + status)
+      );
     
     //showing existing locaions from the rails app
-    this.locationsService.getLocations()
-      .subscribe((locations) => {
-        console.log(locations);        
-        this.locations = locations;
-      });  
+    // this.locationsService.getLocations()
+    //   .subscribe((locations) => {
+    //     console.log(locations);        
+    //     this.locations = locations;
+    //   });  
   }
 
   ngAfterViewInit(): void {
@@ -108,24 +117,35 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   onUpload() {
+    this.spinner.show();
+
+    setTimeout(() => {
+        this.spinner.hide();
+    }, 2000);
+
     const uploadData = new FormData();
 
     uploadData.append('image', this.selectedFile, this.selectedFile.name);   
   }
 
   onSignup() {
-    const data = this.signupForm.getRawValue();
+    const data = this.signupForm.getRawValue()
 
-    if (data.location.state === "" || data.location.city === "" || data.location_id === "" ) {
-      data.location_id = 1;
-    }
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
+
+    // if (data.location.state === "" || data.location.city === "" || data.location_id === "" ) {
+    //   data.location_id = 1;
+    // }
     console.log(data);    
 
-    this.authService.signupUser({"user":data}).subscribe((response) => {
- 
+    this.authService.signupUser({"user":data})
+    .subscribe((response) => {
       console.log(response);        
-
-      });    
+      });   
+       
     this.signupForm.reset();
   } 
 }

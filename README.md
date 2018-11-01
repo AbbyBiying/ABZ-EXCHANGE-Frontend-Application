@@ -1,6 +1,22 @@
-# ABZApp
+# ABZ EXCHANGE Front End Angular 8 Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2, talking to the my barter trading Rails app [ABZ_EXCHANGE](https://github.com/AbbyBiying/ABZ_EXCHANGE)
+If you have items or services to exchange we can help you connect with interested people!
+
+When you sign up and get a welcome email, you can:
+
+* See successful exchanges
+* Add your own listing
+* Make an offer on a listing
+* Accept an offer
+* Complete an exchange
+* Add images
+* Add groups
+* Follow other users
+* Add comments to listings, images and groups
+* Find direction to reach another user
+* Search listings, offers, users, images and comments.
+
 
 ## Development server
 

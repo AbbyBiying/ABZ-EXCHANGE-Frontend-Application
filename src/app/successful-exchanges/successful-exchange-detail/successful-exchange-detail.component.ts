@@ -4,9 +4,7 @@ import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { SuccessfulExchangesService } from '../../services/successfulExchanges.service';
 import { SuccessfulExchange } from '../successfulExchange.model';
 
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { switchMap, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-successfulexchange',
@@ -23,28 +21,28 @@ export class SuccessfulExchangeDetailComponent implements OnInit, OnDestroy {
     private SuccessfulExchangesService: SuccessfulExchangesService,
     private location: Location) { }
 
-  ngOnInit(): void {
-    // this.getSuccessfulExchange();
+    ngOnInit(): void {
+     // this.getSuccessfulExchange();
 
-    this.successfulexchange = {
-      id: this.route.snapshot.params['id'],
-      exchange_id: this.route.snapshot.params['exchange_id'],
-      created_at: this.route.snapshot.params['created_at'],
-      updated_at: this.route.snapshot.params['updated_at'],
-    };
+  //   this.successfulexchange = {
+  //     id: this.route.snapshot.params['id'],
+  //     exchange_id: this.route.snapshot.params['exchange_id'],
+  //     created_at: this.route.snapshot.params['created_at'],
+  //     updated_at: this.route.snapshot.params['updated_at'],
+  //   };
 
-    this.paramsSubscription = this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.successfulexchange.id = params['id'];
-          this.successfulexchange.exchange_id = params['exchange_id'];
-          this.successfulexchange.created_at = params['created_at'];
-          this.successfulexchange.updated_at = params['updated_at'];
-          console.log(this.successfulexchange);
-          console.log("successfulexchange");
-        }
-      );
-  }
+  //   this.paramsSubscription = this.route.params
+  //     .subscribe(
+  //       (params: Params) => {
+  //         this.successfulexchange.id = params['id'];
+  //         this.successfulexchange.exchange_id = params['exchange_id'];
+  //         this.successfulexchange.created_at = params['created_at'];
+  //         this.successfulexchange.updated_at = params['updated_at'];
+  //         console.log(this.successfulexchange);
+  //         console.log("successfulexchange");
+  //       }
+  //     );
+   }
 
   // getSuccessfulExchange(): void {
   //   const id = +this.route.snapshot.paramMap.get('id');
@@ -52,7 +50,7 @@ export class SuccessfulExchangeDetailComponent implements OnInit, OnDestroy {
   //     .subscribe(successfulexchange => this.successfulexchange = successfulexchange);
   // }
   
-  ngOnDestroy() {
-    this.paramsSubscription.unsubscribe();
+   ngOnDestroy() {
+  //   this.paramsSubscription.unsubscribe();
   }
 }

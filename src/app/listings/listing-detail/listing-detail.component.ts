@@ -4,8 +4,7 @@ import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { ListingsService } from '../../services/listings.service';
 import { Listing } from '../listing.model';
 
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+import { Subscription ,  Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
 @Component({

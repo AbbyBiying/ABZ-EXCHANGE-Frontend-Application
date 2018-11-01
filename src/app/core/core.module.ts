@@ -14,6 +14,7 @@ import { ConfigService } from '../config/config.service';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     MobileMenuModule,
     MatButtonModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     HeaderComponent,

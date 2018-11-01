@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { ExchangesService } from '../../services/exchanges.service';
 import { Exchange } from '../exchange.model';
 
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-exchange',

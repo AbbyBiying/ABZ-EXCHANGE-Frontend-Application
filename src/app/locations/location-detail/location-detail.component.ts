@@ -4,8 +4,7 @@ import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { LocationsService } from '../../services/locations.service';
 import { Location } from '../location.model';
 
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+import { Subscription ,  Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
 @Component({

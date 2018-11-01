@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import { MobileMenuModule } from '../mobile-menu/mobile-menu.module';
 
 @Component({
   selector: 'app-header',
