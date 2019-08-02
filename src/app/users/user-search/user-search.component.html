@@ -1,0 +1,15 @@
+<div class="example-form index">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="user"
+      aria-label="user"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let user of allusers" [value]="user.username">
+        {{ user.username }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

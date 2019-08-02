@@ -1,21 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
 // material
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule, } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from "@angular/material/icon";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatCardModule } from "@angular/material/card";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { MatButtonModule } from "@angular/material/button";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
-import { UsersComponent } from './users.component';
-import { UserDetailComponent } from '../users/user-detail/user-detail.component';
-import { EditUserComponent } from '../users/edit-user/edit-user.component';
-import { UsersRoutingModule } from './users-routing.module';
+import { UsersComponent } from "./users.component";
+import { UserDetailComponent } from "../users/user-detail/user-detail.component";
+import { EditUserComponent } from "../users/edit-user/edit-user.component";
+import { UsersRoutingModule } from "./users-routing.module";
+import { UserSearchComponent } from "../users/user-search/user-search.component";
 
 @NgModule({
   imports: [
@@ -30,12 +32,14 @@ import { UsersRoutingModule } from './users-routing.module';
     MatSelectModule,
     MatButtonModule,
     UsersRoutingModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatAutocompleteModule
   ],
   declarations: [
     UsersComponent,
     UserDetailComponent,
     EditUserComponent,
+    UserSearchComponent
   ]
 })
-export class UsersModule { }
+export class UsersModule {}
