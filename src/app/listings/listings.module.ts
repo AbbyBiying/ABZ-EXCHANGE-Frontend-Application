@@ -11,10 +11,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule, } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { ListingsComponent } from './listings.component';
 import { ListingDetailComponent } from '../listings/listing-detail/listing-detail.component';
 import { EditListingComponent } from '../listings/edit-listing/edit-listing.component';
+import { ListingSearchComponent } from '../listings/listing-search/listing-search.component';
 import { ListingsRoutingModule } from './listings-routing.module';
 
 @NgModule({
@@ -30,12 +32,14 @@ import { ListingsRoutingModule } from './listings-routing.module';
     MatSelectModule,
     MatButtonModule,
     ReactiveFormsModule,
-    ListingsRoutingModule
+    ListingsRoutingModule,
+    MatAutocompleteModule
   ],
   declarations: [
     ListingsComponent,
     ListingDetailComponent,
-    EditListingComponent
+    EditListingComponent,
+    ListingSearchComponent
   ]
 })
 export class ListingsModule { }

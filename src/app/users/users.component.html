@@ -1,28 +1,34 @@
 <div class="index">
-  <p>Users: </p>
+  <p>Users:</p>
   <div class="table-search-spinner" *ngIf="loading | async">
-    <mat-spinner class="obs-mat-spinner"
-      [diameter]="100"
-      [strokeWidth]="5">
+    <mat-spinner class="obs-mat-spinner" [diameter]="100" [strokeWidth]="5">
     </mat-spinner>
   </div>
 
-  <div *ngFor="let user of users"
-    fxLayout="row wrap" 
+  <div
+    *ngFor="let user of users"
+    fxLayout="row"
     fxLayoutAlign="space-around center"
-    fxLayout.xs="column wrap" 
-    fxLayoutWrap 
-    fxLayoutGap="5%">  
+    fxLayout.xs="column"
+    fxLayoutWrap
+    fxLayoutGap="5%"
+    class="card"
+  >
     <a [routerLink]="['/users', user.id]">
       <mat-card class="user-card">
-        {{user|json}}
-        <mat-card-header>        
+        <!-- {{user|json}} -->
+        <mat-card-header>
           <div mat-card-avatar class="user-header-image"></div>
 
           <mat-card-title>Username: {{ user.username }}</mat-card-title>
-        </mat-card-header> 
-      </mat-card>  
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>Bio: {{ user.bio }}</p>
+        </mat-card-content>
+
+        <mat-card-actions>Add Friend</mat-card-actions>
+      </mat-card>
     </a>
   </div>
 </div>
-

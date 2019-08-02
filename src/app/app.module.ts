@@ -9,12 +9,10 @@ import { CoreModule } from './core/core.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
-import { ListingSearchComponent } from './listing-search/listing-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListingSearchComponent
   ],
   imports: [
     BrowserModule,

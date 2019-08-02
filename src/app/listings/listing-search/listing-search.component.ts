@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
-
-import {
-   debounceTime, distinctUntilChanged, switchMap
+import { Subscription } from 'rxjs';
+import { map, startWith, debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 
-import { ListingsService } from '../services/listings.service';
-import { Listing } from '../listings/listing.model';
+import { ListingsService } from '../../services/listings.service';
+import { Listing } from '../listing.model';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-listing-search',
@@ -16,8 +16,10 @@ import { Listing } from '../listings/listing.model';
 })
 export class ListingSearchComponent implements OnInit {
   listings$: Observable<Listing[]>;
+  allListings: Listing[];
 
   private searchTerms = new Subject<string>();
+  subscription: Subscription;
 
   constructor(private listingsService: ListingsService) {}
   
@@ -27,6 +29,15 @@ export class ListingSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscription = this.listingsService.getListings()
+    .subscribe(
+      (listings: Listing[]) => {
+        console.log(listings);
+        return this.allListings = listings;
+
+      }
+    );
+    
     this.listings$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),

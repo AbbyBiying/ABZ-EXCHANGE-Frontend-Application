@@ -1,25 +1,27 @@
 <div class="index">
   <!-- <button (click)="onNewGroup()">Add A New Group</button> -->
 
-  <p>Groups: </p>
+  <p>Groups:</p>
 
-  <div *ngFor="let group of groups"
-    fxLayout="row" 
+  <div
+    *ngFor="let group of groups"
+    fxLayout="row"
     fxLayoutAlign="space-around center"
-    fxLayout.xs="column" 
-    fxLayoutWrap 
-    fxLayoutGap="5%">  
+    fxLayout.xs="column"
+    fxLayoutWrap
+    fxLayoutGap="5%"
+    class="card"
+  >
     <a [routerLink]="['/groups', group.id]">
       <mat-card class="group-card">
-        {{group|json}}
-        <mat-card-header>        
+        <!-- {{group|json}} -->
+        <mat-card-header>
           <div mat-card-avatar class="group-header-image"></div>
 
           <mat-card-title>Name: {{ group.name }}</mat-card-title>
           <mat-card-title>Description: {{ group.description }}</mat-card-title>
-
-        </mat-card-header> 
-      </mat-card>  
+        </mat-card-header>
+      </mat-card>
     </a>
   </div>
 </div>

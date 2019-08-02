@@ -1,8 +1,10 @@
-@import '../../../sass/variables';
-@import '../../../sass/typography';
-@import '../../../sass/mixins';
+@import "../../../sass/variables";
+@import "../../../sass/typography";
+@import "../../../sass/mixins";
 @import "../../../sass/theming";
 
 #signup-form {
   @include forms;
+  margin: 0 auto;
+  opacity: 0.8;
 }

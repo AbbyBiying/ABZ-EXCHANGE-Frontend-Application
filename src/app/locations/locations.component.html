@@ -1,22 +1,25 @@
 <div class="index">
-    <p>locations: </p>
-  
-    <div *ngFor="let location of locations; let i = index"
-      fxLayout="row" 
-      fxLayoutAlign="space-around center"
-      fxLayout.xs="column" 
-      fxLayoutWrap 
-      fxLayoutGap="5%">  
-      <a [routerLink]="['/locations', location.id]" (click)="onEditItem(i)">
-        <mat-card class="location-card">
-          {{ location | json }}
-          <mat-card-header>        
-            <div mat-card-avatar class="location-header-image"></div>
-  
-            <mat-card-title>Name: {{ location.city }}</mat-card-title>
-            <mat-card-title>Description: {{ location.state }}</mat-card-title>
-          </mat-card-header> 
-        </mat-card>  
-      </a>
-    </div>
+  <p>locations:</p>
+
+  <div
+    *ngFor="let location of locations; let i = index"
+    fxLayout="row"
+    fxLayoutAlign="space-around center"
+    fxLayout.xs="column"
+    fxLayoutWrap
+    fxLayoutGap="5%"
+    class="card"
+  >
+    <a [routerLink]="['/locations', location.id]" (click)="onEditItem(i)">
+      <mat-card class="location-card">
+        <!-- {{ location | json }} -->
+        <mat-card-header>
+          <div mat-card-avatar class="location-header-image"></div>
+
+          <mat-card-title>City: {{ location.city }}</mat-card-title>
+          <mat-card-title>State: {{ location.state }}</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+    </a>
   </div>
+</div>

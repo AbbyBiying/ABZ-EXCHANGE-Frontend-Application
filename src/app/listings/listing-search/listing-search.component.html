@@ -1,0 +1,15 @@
+<div class="example-form index">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Listing"
+      aria-label="Listing"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let listing of allListings" [value]="listing.name">
+        {{ listing.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
