@@ -1,25 +1,31 @@
-<div class="home">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Welcome to ABZ EXCHANGE</mat-card-title>
-      <mat-card-subtitle>For people interested in barter trading
-      Sign up and get a welcome email, you can:</mat-card-subtitle>
-    </mat-card-header>
-    <img #box (click)="myFunc($event)" mat-card-image src="assets/logos/ABZX01.png">  
+<div class="home-container main">
+  <div class="home">
+    <div class="margin-auto intro">
+      <img #box (click)="myFunc($event)" src="assets/logos/ABZX01.png" />
+      <p>
+        For people interested in barter trading Sign up and get a welcome email,
+        you can:
+      </p>
 
-    <mat-card-content>
-      See successful exchanges
-      Add your own listing
-      Make an offer on a listing
-      Accept an offer
-      Complete an exchange
-      Add images
-      Add groups
-      Follow other users
-      Add comments to listings, images and groups
-      Find direction to reach another user
-      Search listings, offers, users, images and comments.
-    </mat-card-content>
-
-  </mat-card>
+      <mat-list role="list">
+        <mat-list-item role="listitem">See successful exchanges</mat-list-item>
+        <mat-list-item role="listitem">Add your own listing</mat-list-item>
+        <mat-list-item role="listitem"
+          >Make an offer on a listing</mat-list-item
+        >
+        <mat-list-item role="listitem">Accept an offer</mat-list-item>
+        <mat-list-item role="listitem">Complete an exchange</mat-list-item>
+        <mat-list-item role="listitem">Add images, groups</mat-list-item>
+        <mat-list-item role="listitem">Follow other users</mat-list-item>
+        <mat-list-item role="listitem">Add comments</mat-list-item>
+        <mat-list-item role="listitem"
+          >Find direction to another users</mat-list-item
+        >
+        <mat-list-item role="listitem">Add comments</mat-list-item>
+        <mat-list-item role="listitem"
+          >Search listings, offers, users, images and comments</mat-list-item
+        >
+      </mat-list>
+    </div>
+  </div>
 </div>

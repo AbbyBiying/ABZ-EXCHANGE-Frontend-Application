@@ -1,8 +1,9 @@
-@import '../../../sass/variables';
-@import '../../../sass/typography';
-@import '../../../sass/mixins';
+@import "../../../sass/variables";
+@import "../../../sass/typography";
+@import "../../../sass/mixins";
 @import "../../../sass/theming";
 
 #signin-form {
   @include forms;
+  opacity: 0.8;
 }
