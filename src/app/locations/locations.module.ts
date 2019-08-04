@@ -9,6 +9,9 @@ import { LocationDetailComponent } from "../locations/location-detail/location-d
 import { LocationsRoutingModule } from "./locations-routing.module";
 import { LocationSearchComponent } from "./location-search/location-search.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 
 @NgModule({
   imports: [
@@ -17,7 +20,10 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatCardModule,
     LocationsRoutingModule,
     FlexLayoutModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   declarations: [
     LocationsComponent,

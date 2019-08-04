@@ -1,35 +1,37 @@
-<div class="index">
-    <p>Successful Exchanges: </p>
-  
-    <div *ngFor="let successfulexchange of successfulexchanges; let i = index"
-      fxLayout="row" 
+<div class="successful-exchanges-container">
+  <div class="index">
+    <p>Successful Exchanges:</p>
+
+    <div
+      *ngFor="let successfulexchange of successfulexchanges; let i = index"
+      fxLayout="row"
       fxLayoutAlign="space-around center"
-      fxLayout.xs="column" 
-      fxLayoutWrap 
-      fxLayoutGap="5%">  
-        <mat-card class="successful-exchanges-card">
-          {{ successfulexchange | json }}
-          <!-- <app-successfulexchange></app-successfulexchange> -->
-          <div>
-            <label>Id: </label>{{ successfulexchange.id }} 
-          </div>
-          
-          <div>
-            <label>Exchange Id: </label>{{ successfulexchange.exchange_id }} 
-          </div>
-            
-          <div>
-            <label>Created at: </label>{{ successfulexchange.created_at }} 
-          </div>
-        
-          <div>
-            <label>Updated at: </label>{{ successfulexchange.updated_at }} 
-          </div>              
-          <!-- <mat-card-header>        
+      fxLayout.xs="column"
+      fxLayoutWrap
+      fxLayoutGap="5%"
+    >
+      <mat-card class="successful-exchanges-card">
+        {{ successfulexchange | json }}
+        <!-- <app-successfulexchange></app-successfulexchange> -->
+        <div><label>Id: </label>{{ successfulexchange.id }}</div>
+
+        <div>
+          <label>Exchange Id: </label>{{ successfulexchange.exchange_id }}
+        </div>
+
+        <div>
+          <label>Created at: </label>{{ successfulexchange.created_at }}
+        </div>
+
+        <div>
+          <label>Updated at: </label>{{ successfulexchange.updated_at }}
+        </div>
+        <!-- <mat-card-header>        
             <div mat-card-avatar class="successful-exchanges-header-image"></div>
   
             <mat-card-title>Exchange Id: {{ successfulexchange.exchange_id }}</mat-card-title>
           </mat-card-header>  -->
-        </mat-card>  
+      </mat-card>
     </div>
   </div>
+</div>

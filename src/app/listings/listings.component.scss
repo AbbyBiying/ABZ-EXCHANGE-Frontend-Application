@@ -4,9 +4,12 @@
 }
 
 .listings-container {
-  background-image: url(src/assets/logos/straw-bag.jpeg);
+  min-height: 100vh;
+  background: url(src/assets/logos/listing.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  height: 100%;
 }
 
 .listing-card {
