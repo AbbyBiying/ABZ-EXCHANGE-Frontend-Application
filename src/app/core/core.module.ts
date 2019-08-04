@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { HeaderComponent } from "./header/header.component";
 import { HomeComponent } from "./home/home.component";
@@ -25,7 +26,8 @@ import { MatListModule } from "@angular/material/list";
     MobileMenuModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatListModule
+    MatListModule,
+    FlexLayoutModule
   ],
   declarations: [HeaderComponent, HomeComponent, CommentDetailComponent],
   exports: [AppRoutingModule, HeaderComponent],

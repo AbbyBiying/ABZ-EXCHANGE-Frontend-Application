@@ -1,13 +1,19 @@
-@import '../../../sass/variables';
-@import '../../../sass/typography';
-@import '../../../sass/mixins';
+@import "../../../sass/variables";
+@import "../../../sass/typography";
+@import "../../../sass/mixins";
 @import "../../../sass/theming";
 
-.header-button{
+.header-button {
   float: right;
   font-size: 1.8rem;
 
-  @include mmmq('tablet-wide') {
+  @include mmmq("tablet-wide") {
     font-size: 2.4rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .header-button {
+    margin-top: -22px;
   }
 }

@@ -9,6 +9,7 @@ import { CoreModule } from "./core/core.module";
 import { TranslateModule } from "@ngx-translate/core";
 import { AuthModule } from "./auth/auth.module";
 import { AppComponent } from "./app.component";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { AppComponent } from "./app.component";
     AuthModule,
     CoreModule,
     MobileMenuModule,
+    FlexLayoutModule,
     TranslateModule.forRoot()
   ],
   providers: [],

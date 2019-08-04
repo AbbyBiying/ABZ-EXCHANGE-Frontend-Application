@@ -1,8 +1,15 @@
 .location-card {
-  max-width: 400px;
+  margin: 15px;
+  min-width: 200px;
 }
 
 .location-header-image {
-  background-image: url('/assets/logos/default.png');
+  background-image: url("/assets/logos/default.png");
   background-size: cover;
+}
+
+.locations-container {
+  background-image: url(src/assets/logos/compass.jpeg);
+  background-size: cover;
+  height: 100%;
 }

@@ -1,25 +1,44 @@
-<div class="index">
-  <p>locations:</p>
+<div class="locations-container">
+  <div>
+    <app-location-search></app-location-search>
+  </div>
 
-  <div
-    *ngFor="let location of locations; let i = index"
-    fxLayout="row"
-    fxLayoutAlign="space-around center"
-    fxLayout.xs="column"
-    fxLayoutWrap
-    fxLayoutGap="5%"
-    class="card"
-  >
-    <a [routerLink]="['/locations', location.id]" (click)="onEditItem(i)">
-      <mat-card class="location-card">
-        <!-- {{ location | json }} -->
-        <mat-card-header>
-          <div mat-card-avatar class="location-header-image"></div>
+  <div class="index">
+    <p>locations:</p>
 
-          <mat-card-title>City: {{ location.city }}</mat-card-title>
-          <mat-card-title>State: {{ location.state }}</mat-card-title>
-        </mat-card-header>
-      </mat-card>
-    </a>
+    <div class="table-search-spinner" *ngIf="loading | async">
+      <mat-spinner class="obs-mat-spinner" [diameter]="100" [strokeWidth]="5">
+      </mat-spinner>
+    </div>
+
+    <div
+      fxLayout="row wrap"
+      fxLayout.xs="column wrap"
+      fxFlexFill
+      fxLayoutAlign="space-around stretch"
+    >
+      <ng-container *ngFor="let location of locations">
+        <!-- {{ location |json}} -->
+        <a
+          [routerLink]="['/locations', location.id]"
+          (click)="onEditItem(i)"
+          fxFlex="1 2 calc(15em + 10px)"
+          fxFlex.xs="1 2 calc(5em + 10px)"
+        >
+          <mat-card class="location-card">
+            <!-- {{location|json}} -->
+
+            <mat-card-header>
+              <!-- <div mat-card-avatar class="location-header-image"></div> -->
+
+              <mat-card-title>City: {{ location.city }}</mat-card-title>
+              <mat-card-title>State: {{ location.state }}</mat-card-title>
+            </mat-card-header>
+
+            <!-- <img mat-card-image src="{{location.avatar_file_name}}"  alt="{{location.name}}"> -->
+          </mat-card>
+        </a>
+      </ng-container>
+    </div>
   </div>
 </div>

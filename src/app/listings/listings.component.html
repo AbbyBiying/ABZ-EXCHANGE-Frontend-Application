@@ -1,33 +1,47 @@
-<div>
-  <app-listing-search></app-listing-search>
-</div>
+<div class="listings-container">
+  <div>
+    <app-listing-search></app-listing-search>
+  </div>
 
-<div class="index">
-  <p>Listings:</p>
+  <div class="index">
+    <p>Listings:</p>
 
-  <div
-    *ngFor="let listing of listings; let i = index"
-    fxLayout="row"
-    fxLayoutAlign="space-around center"
-    fxLayoutWrap
-    fxLayoutGap="5%"
-    class="card"
-  >
-    <!-- {{ listing |json}} -->
-    <a [routerLink]="['/listings', listing.id]" (click)="onEditItem(i)">
-      <mat-card class="listing-card">
-        <mat-card-header>
-          <div mat-card-avatar class="listing-header-image"></div>
+    <div class="table-search-spinner" *ngIf="loading | async">
+      <mat-spinner class="obs-mat-spinner" [diameter]="100" [strokeWidth]="5">
+      </mat-spinner>
+    </div>
 
-          <mat-card-title>Name: {{ listing.name }}</mat-card-title>
-        </mat-card-header>
+    <div
+      fxLayout="row wrap"
+      fxLayout.xs="column wrap"
+      fxFlexFill
+      fxLayoutAlign="space-around stretch"
+    >
+      <ng-container *ngFor="let listing of listings">
+        <!-- {{ listing |json}} -->
+        <a
+          [routerLink]="['/listings', listing.id]"
+          (click)="onEditItem(i)"
+          fxFlex="1 2 calc(15em + 10px)"
+          fxFlex.xs="1 2 calc(5em + 10px)"
+        >
+          <mat-card class="listing-card">
+            <!-- {{listing|json}} -->
 
-        <mat-card-content>
-          <p>Description: {{ listing.description }}</p>
-        </mat-card-content>
-        <!-- <img mat-card-image src="{{listing.avatar_file_name}}"  alt="{{listing.name}}"> -->
-        <mat-card-actions>User Id: {{ listing.user_id }}</mat-card-actions>
-      </mat-card>
-    </a>
+            <mat-card-header>
+              <!-- <div mat-card-avatar class="listing-header-image"></div> -->
+
+              <mat-card-title>Name: {{ listing.name }}</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+              <p>Description: {{ listing.description }}</p>
+            </mat-card-content>
+            <!-- <img mat-card-image src="{{listing.avatar_file_name}}"  alt="{{listing.name}}"> -->
+            <mat-card-actions>User Id: {{ listing.user_id }}</mat-card-actions>
+          </mat-card>
+        </a>
+      </ng-container>
+    </div>
   </div>
 </div>

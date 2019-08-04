@@ -1,10 +1,17 @@
+.users-container {
+  background-image: url(src/assets/logos/straw-bag.jpeg);
+  background-size: cover;
+  height: 100%;
+}
+
 .user-card {
-  width: 100%;
+  margin: 15px;
+  min-width: 200px;
 }
 
 .user-header-image {
-  background-image: url('/assets/logos/default.png');
-  background-size: cover;  
+  background-image: url("/assets/logos/default.png");
+  background-size: cover;
   width: 50px;
   height: 50px;
 }

@@ -1,9 +1,15 @@
-.listing-card {
-  max-width: 400px;
-}
-
 .listing-header-image {
-  background-image: url('/assets/logos/default.png');
+  background-image: url("/assets/logos/default.png");
   background-size: cover;
 }
 
+.listings-container {
+  background-image: url(src/assets/logos/straw-bag.jpeg);
+  background-size: cover;
+  height: 100%;
+}
+
+.listing-card {
+  margin: 15px;
+  min-width: 200px;
+}

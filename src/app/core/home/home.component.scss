@@ -10,15 +10,15 @@ mat-card-title {
 // }
 
 .intro {
-  padding: 15%;
+  padding: 5% 15%;
   background-color: rgba(255, 255, 255, 0.2);
+  img {
+    max-width: 90%;
+  }
 }
 
 .home-container {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  background-image: url(src/assets/logos/pink_sky.jpeg);
+  background-size: cover;
+  height: 100%;
 }

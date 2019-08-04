@@ -12,6 +12,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { UsersComponent } from "./users.component";
 import { UserDetailComponent } from "../users/user-detail/user-detail.component";
@@ -33,7 +34,8 @@ import { UserSearchComponent } from "../users/user-search/user-search.component"
     MatButtonModule,
     UsersRoutingModule,
     MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    FlexLayoutModule
   ],
   declarations: [
     UsersComponent,
