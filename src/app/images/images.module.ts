@@ -1,13 +1,11 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FlexLayoutModule } from "@angular/flex-layout";
-
+import { SharedModule } from "../shared/shared.module";
 import { ImagesComponent } from "./images.component";
 import { ImagesRoutingModule } from "./images-routing.module";
 import { ImageDetailComponent } from "./image-detail/image-detail.component";
 
 @NgModule({
-  imports: [CommonModule, ImagesRoutingModule, FlexLayoutModule],
+  imports: [ImagesRoutingModule, SharedModule],
   declarations: [ImagesComponent, ImageDetailComponent]
 })
 export class ImagesModule {}
