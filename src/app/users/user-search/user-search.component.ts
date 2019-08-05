@@ -2,17 +2,10 @@ import { Component, OnInit } from "@angular/core";
 
 import { Observable, Subject } from "rxjs";
 import { Subscription } from "rxjs";
-import {
-  map,
-  startWith,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap
-} from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
 
 import { UsersService } from "../../services/users.service";
 import { User } from "../user.model";
-import { FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-user-search",
@@ -21,7 +14,6 @@ import { FormControl } from "@angular/forms";
 })
 export class UserSearchComponent implements OnInit {
   users$: Observable<User[]>;
-  allusers: User[];
 
   private searchTerms = new Subject<string>();
   subscription: Subscription;
@@ -34,13 +26,6 @@ export class UserSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = this.usersService
-      .getUsers()
-      .subscribe((users: User[]) => {
-        console.log(users);
-        return (this.allusers = users);
-      });
-
     this.users$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),

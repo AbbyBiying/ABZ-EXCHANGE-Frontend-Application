@@ -1,15 +1,31 @@
 <div class="example-form index">
+  <h4><label for="search-box">User Search</label></h4>
+
   <mat-form-field class="example-full-width">
     <input
+      #searchBox
+      id="search-box"
       matInput
-      placeholder="user"
+      placeholder="username"
       aria-label="user"
       [matAutocomplete]="auto"
+      (input)="search(searchBox.value)"
     />
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let user of allusers" [value]="user.username">
-        {{ user.username }}
+      <mat-option *ngFor="let user of users$ | async">
+        <a routerLink="/users/{{ user.id }}">
+          {{ user.username }}
+        </a>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+  <!-- <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <li *ngFor="let user of users$ | async">
+      <a routerLink="/users/{{ user.id }}">
+        {{ user.username }}
+      </a>
+    </li>
+  </ul> -->
 </div>

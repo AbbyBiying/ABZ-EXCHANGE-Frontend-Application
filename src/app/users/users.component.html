@@ -27,7 +27,10 @@
             <mat-card-header>
               <!-- <div mat-card-avatar class="user-header-image"></div> -->
 
-              <mat-card-title>Username: {{ user.username }}</mat-card-title>
+              <mat-card-title
+                >UserID: {{ user.id }}, Username:
+                {{ user.username }}</mat-card-title
+              >
             </mat-card-header>
 
             <mat-card-content *ngIf="user.bio">
@@ -35,6 +38,9 @@
             </mat-card-content>
           </mat-card>
         </a>
+        <!-- <button class="delete" title="delete user" (click)="delete(user)">
+          x
+        </button> -->
       </ng-container>
     </div>
   </div>
