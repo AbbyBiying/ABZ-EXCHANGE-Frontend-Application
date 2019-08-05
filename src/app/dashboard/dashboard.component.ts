@@ -1,68 +1,67 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Subscription } from 'rxjs';
-import { User } from '../users/user.model';
-import { UsersService } from '../services/users.service';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ActivatedRoute, Params } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
+import { Subscription } from "rxjs";
+import { User } from "../users/user.model";
+import { UsersService } from "../services/users.service";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.scss"]
 })
 export class DashboardComponent implements OnInit {
   user: User;
-
+  currentUserEmail: string;
   paramsSubscription: Subscription;
   private id: number;
 
   constructor(
-    private route: ActivatedRoute,    
+    private route: ActivatedRoute,
     private usersService: UsersService,
     private spinner: NgxSpinnerService
-    ) {}
-  
+  ) {}
+
   ngOnInit() {
-    this.spinner.show();    
+    this.spinner.show();
     setTimeout(() => {
       this.spinner.hide();
-    }, 1000);  
+    }, 1000);
 
-    this.user = {
-      id: this.route.snapshot.params['id'],
-      username: this.route.snapshot.params['username'],
-      email: this.route.snapshot.params['email'],
-      bio: this.route.snapshot.params['bio'],
-      location_id: this.route.snapshot.params['location_id'],
-      location: this.route.snapshot.params['location'],
-      created_at: this.route.snapshot.params['created_at'],
-      updated_at: this.route.snapshot.params['updated_at'],      
-    };
+    //   this.user = {
+    //     id: this.route.snapshot.params["id"],
+    //     username: this.route.snapshot.params["username"],
+    //     email: this.route.snapshot.params["email"],
+    //     bio: this.route.snapshot.params["bio"],
+    //     location_id: this.route.snapshot.params["location_id"],
+    //     location: this.route.snapshot.params["location"],
+    //     created_at: this.route.snapshot.params["created_at"],
+    //     updated_at: this.route.snapshot.params["updated_at"]
+    //   };
 
-    this.paramsSubscription = this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.user.id = params['id'];
-          this.user.username = params['username'];
-          this.user.bio = params['bio'];
-          this.user.email = params['email'];          
-          this.user.location_id = params['location_id'];          
-          this.user.location = params['location'];          
-          this.user.created_at = params['created_at'];
-          this.user.updated_at = params['updated_at'];
-          console.log(this.user);
-          console.log("user");
-        }
-      );
+    //   this.paramsSubscription = this.route.params.subscribe((params: Params) => {
+    //     this.user.id = params["id"];
+    //     this.user.username = params["username"];
+    //     this.user.bio = params["bio"];
+    //     this.user.email = params["email"];
+    //     this.user.location_id = params["location_id"];
+    //     this.user.location = params["location"];
+    //     this.user.created_at = params["created_at"];
+    //     this.user.updated_at = params["updated_at"];
+    //     console.log(this.user);
+    //     console.log("user");
+    //   });
+    // }
+    this.currentUserEmail = localStorage.getItem("email");
+    console.log(localStorage.getItem("email"));
+
+    const id = +this.route.snapshot.paramMap.get("id");
+    this.usersService.getUser(id).subscribe(user => {
+      return (this.user = user);
+    });
   }
 
-  getUser(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.usersService.getUser(id)
-      .subscribe(user => this.user = user);
-  }
-  
-  ngOnDestroy() {
-    this.paramsSubscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.paramsSubscription.unsubscribe();
+  // }
 }

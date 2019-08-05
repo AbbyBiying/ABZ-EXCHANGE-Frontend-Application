@@ -55,6 +55,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
     const data = this.signinForm.getRawValue();
     this.spinner.show();
     this.authService.signinUser({ user: data }).subscribe(response => {
+      console.log("response");
       console.log(response);
     });
     setTimeout(() => {

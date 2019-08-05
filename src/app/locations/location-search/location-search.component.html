@@ -1,14 +1,21 @@
 <div class="example-form index">
+  <h4><label for="search-box">location Search</label></h4>
+
   <mat-form-field class="example-full-width">
     <input
+      #searchBox
+      id="search-box"
       matInput
-      placeholder="location"
-      aria-label="location"
+      placeholder="city"
+      aria-label="city"
       [matAutocomplete]="auto"
+      (input)="search(searchBox.value)"
     />
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let location of locations" [value]="location.city">
-        {{ location.city }}
+      <mat-option *ngFor="let location of locations$ | async">
+        <a routerLink="/locations/{{ location.id }}">
+          {{ location.city }}
+        </a>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
