@@ -12,10 +12,10 @@ import { UsersService } from "../services/users.service";
 })
 export class DashboardComponent implements OnInit {
   user: User;
-  currentUserEmail: string;
   paramsSubscription: Subscription;
   private id: number;
-
+  currentUser: any;
+  currentUserEmail: string;
   constructor(
     private route: ActivatedRoute,
     private usersService: UsersService,
@@ -52,8 +52,9 @@ export class DashboardComponent implements OnInit {
     //     console.log("user");
     //   });
     // }
-    this.currentUserEmail = localStorage.getItem("email");
-    console.log(localStorage.getItem("email"));
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"))["user"];
+
+    console.log(this.currentUser);
 
     const id = +this.route.snapshot.paramMap.get("id");
     this.usersService.getUser(id).subscribe(user => {

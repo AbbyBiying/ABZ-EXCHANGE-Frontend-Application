@@ -1,68 +1,72 @@
 import { Router } from "@angular/router";
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ConfigService } from "../config/config.service";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "../users/user.model";
-import { catchError } from "rxjs/operators";
+import { retry, catchError, map } from "rxjs/operators";
 
-@Injectable()
-export class AuthService implements OnInit {
+@Injectable({
+  providedIn: "root"
+})
+export class AuthService {
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+
   token: string;
   user: User;
+  error: any;
   constructor(
     private router: Router,
     private http: HttpClient,
     private configService: ConfigService
-  ) {}
+  ) {
+    this.currentUserSubject = new BehaviorSubject<User>(
+      JSON.parse(localStorage.getItem("currentUser"))
+    );
+  }
 
-  ngOnInit() {}
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
 
   signinUser(user): Observable<any> {
-    return new Observable(observer => {
-      this.http
-        .post("/users/sign_in", user, {})
-        .pipe(catchError(this.configService.handleError))
-        .subscribe(data => {
-          if (data !== null) {
-            this.token = data["token"];
-            localStorage.setItem("authToken", this.token);
-            localStorage.setItem("email", data["user"]);
+    return this.http.post<any>("/users/sign_in", user, {}).pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.configService.handleError),
+      map(user => {
+        // login successful if there's a jwt token in the response
+        if (user && user["token"]) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem("currentUser", JSON.stringify(user));
+          this.currentUserSubject.next(user);
+        }
 
-            console.log("Current User data:");
-            console.log(data);
-            observer.next(data);
-            this.router.navigate(["/dashboard"]);
-            observer.complete();
-          }
-        });
-    });
+        return user;
+      })
+    );
   }
 
   signupUser(user): Observable<any> {
-    return new Observable(observer => {
-      this.http
-        .post("/users", user, {})
-        .pipe(catchError(this.configService.handleError))
-        .subscribe(data => {
-          if (data !== null) {
-            this.token = data["token"];
-            localStorage.setItem("authToken", this.token);
+    return this.http.post<any>("/users", user, {}).pipe(
+      retry(3),
+      catchError(this.configService.handleError),
+      map(user => {
+        if (user) {
+          localStorage.setItem("currentUser", JSON.stringify(user));
+          this.currentUserSubject.next(user);
+        }
 
-            console.log("User is signed up!");
-            console.log(data);
-
-            observer.next(data);
-            this.router.navigate(["/"]);
-            observer.complete();
-          }
-        });
-    });
+        return user;
+      })
+    );
   }
 
   signOut() {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("currentUser");
     console.log("User is signed out!");
+    this.currentUserSubject.next(null);
     this.router.navigate(["/"]);
   }
 

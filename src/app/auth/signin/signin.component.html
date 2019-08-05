@@ -1,3 +1,14 @@
+<div class="alert alert-danger" *ngIf="error">error: {{ error }}</div>
+<div *ngIf="isLoading" style="text-align: center;">
+  <ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="large"
+    color="#fff"
+    type="ball-spin-clockwise"
+  >
+  </ngx-spinner>
+</div>
+
 <div class="form-container" fxLayout="row wrap" fxLayoutAlign="center center">
   <div id="signin-form">
     <div class="logo"></div>

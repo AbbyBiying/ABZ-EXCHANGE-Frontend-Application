@@ -5,6 +5,7 @@ import {
   ElementRef,
   AfterViewInit
 } from "@angular/core";
+
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { AuthService } from "../auth.service";
@@ -17,9 +18,13 @@ import { Router } from "@angular/router";
   styleUrls: ["./signin.component.scss"]
 })
 export class SigninComponent implements OnInit, AfterViewInit {
+  isLoading = false;
+  error: string = null;
   isBadCredentials: boolean = false;
   signinForm: FormGroup;
   signinFormErrors: any;
+  token: string;
+
   @ViewChild("email", { static: false }) email: ElementRef;
 
   constructor(
@@ -53,16 +58,27 @@ export class SigninComponent implements OnInit, AfterViewInit {
 
   onSignin() {
     const data = this.signinForm.getRawValue();
-    this.spinner.show();
-    this.authService.signinUser({ user: data }).subscribe(response => {
-      console.log("response");
-      console.log(response);
-    });
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 1000);
+    this.isLoading = true;
+    this.authService.signinUser({ user: data }).subscribe(
+      data => {
+        if (data !== null) {
+          this.token = data["token"];
+          localStorage.setItem("authToken", this.token);
+
+          console.log("Signed in! Current User data:");
+          console.log(data);
+          this.isLoading = false;
+
+          this.router.navigate(["/dashboard"]);
+        }
+      },
+      err => {
+        this.error = err.error;
+        console.log("HTTP Error", err);
+        this.isLoading = false;
+      }
+    );
 
     this.signinForm.reset();
-    this.router.navigateByUrl("/dashboard");
   }
 }

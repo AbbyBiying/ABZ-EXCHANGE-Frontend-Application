@@ -34,6 +34,8 @@ export interface Location {
   styleUrls: ["./signup.component.scss"]
 })
 export class SignupComponent implements OnInit, AfterViewInit {
+  isLoading = false;
+  error: string = null;
   isBadCredentials: boolean = false;
   signupForm: FormGroup;
   location: Location;
@@ -159,21 +161,30 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   onSignup() {
     const data = this.signupForm.getRawValue();
-
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 1000);
+    this.isLoading = true;
 
     // if (data.location.state === "" || data.location.city === "" || data.location_id === "" ) {
     //   data.location_id = 1;
     // }
     console.log(data);
 
-    this.authService.signupUser({ user: data }).subscribe(response => {
-      console.log(response);
-      this.router.navigateByUrl("/dashboard");
-    });
+    this.authService.signupUser({ user: data }).subscribe(
+      data => {
+        if (data !== null) {
+          // localStorage.setItem("authToken", data["token"]);
+
+          console.log("User is signed up!");
+          console.log(data);
+          this.isLoading = false;
+          this.router.navigate(["/dashboard"]);
+        }
+      },
+      err => {
+        this.error = err.errors;
+        console.log("HTTP Error", err);
+        this.isLoading = false;
+      }
+    );
 
     this.signupForm.reset();
   }
