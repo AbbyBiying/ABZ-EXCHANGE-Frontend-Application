@@ -10,12 +10,12 @@ import { retry, catchError, map } from "rxjs/operators";
   providedIn: "root"
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  currentUserSubject: BehaviorSubject<User>;
 
-  token: string;
-  user: User;
   error: any;
+  // store the URL so we can redirect after logging in
+  redirectUrl: string;
+
   constructor(
     private router: Router,
     private http: HttpClient,
