@@ -26,6 +26,6 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     TranslateModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] // bootstrapped entry component, Angular loads into the DOM during the bootstrap process
 })
 export class AppModule {}

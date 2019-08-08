@@ -69,6 +69,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
+    // Provides a preloading strategy that preloads all modules as quickly as possible
     RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })
     // ,{ enableTracing: true } ),
   ],

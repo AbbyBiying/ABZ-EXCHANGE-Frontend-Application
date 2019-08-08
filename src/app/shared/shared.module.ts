@@ -21,9 +21,11 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 // flexbox
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { AlertComponent } from "./alert/alert.component";
+import { PlaceholderDirective } from "./placeholder/placeholder.directive";
 
 @NgModule({
-  declarations: [],
+  declarations: [AlertComponent, PlaceholderDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -45,6 +47,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     FlexLayoutModule
   ],
   exports: [
+    AlertComponent,
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
@@ -64,6 +67,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatAutocompleteModule,
     // flexbox
     FlexLayoutModule
-  ]
+  ],
+  entryComponents: [AlertComponent] // load imperatively
 })
 export class SharedModule {}
