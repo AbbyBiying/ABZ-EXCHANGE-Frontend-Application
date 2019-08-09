@@ -9,7 +9,11 @@ import { EditListingComponent } from "../listings/edit-listing/edit-listing.comp
 const listingsRoutes: Routes = [
   { path: "", component: ListingsComponent },
   { path: "new", component: EditListingComponent },
-  { path: ":id", component: ListingDetailComponent },
+  {
+    path: ":id",
+    component: ListingDetailComponent,
+    canActivate: [AuthGuardService]
+  },
   {
     path: ":id/edit",
     component: EditListingComponent,

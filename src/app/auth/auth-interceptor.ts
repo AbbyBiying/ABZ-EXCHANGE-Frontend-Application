@@ -37,6 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (this.authService.isAuthenticated()) {
       this.authReq = this.authReq.clone({
         params: new HttpParams().append("auth", authToken)
+        //withCredentials: true
       });
     }
 

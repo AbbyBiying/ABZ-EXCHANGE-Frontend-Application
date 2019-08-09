@@ -10,13 +10,15 @@ import { Listing } from "../listings/listing.model";
   providedIn: "root"
 })
 export class ListingsService {
+  listingsUrl = "/listings"; // URL to web api
   listingsChanged = new Subject<Listing[]>();
 
   constructor(private http: HttpClient, private configService: ConfigService) {}
+
   /** GET listinges from the server */
-  getListings(): Observable<any> {
-    return this.http.get(`/listings`).pipe(
-      tap(_ => console.log("fetched all listings")),
+  getListings(): Observable<Listing[]> {
+    return this.http.get<Listing[]>(this.listingsUrl).pipe(
+      tap(_ => console.log("fetched listings")),
       catchError(this.configService.handleError)
     );
   }
@@ -33,8 +35,18 @@ export class ListingsService {
       catchError(this.configService.handleError)
     );
   }
-  /** GET listing by id. Will 404 if id not found */
+
+  addListing(listing: Listing): Observable<Listing> {
+    return this.http.post<Listing>(this.listingsUrl, listing).pipe(
+      tap((listing: Listing) =>
+        console.log(`added listing w/ id=${listing.id}`)
+      ),
+      catchError(this.configService.handleError)
+    );
+  }
+
   getListing(id: number): Observable<any> {
+    // return this.http.get(`/listings/${id}`, { withCredentials: true }).pipe(
     return this.getListings().pipe(
       tap(_ => console.log(`fetched listing id=${id}`)),
       map(listings => listings.find(listing => listing.id === id)),
@@ -55,8 +67,8 @@ export class ListingsService {
   }
 
   /** PUT: update the group on the server */
-  updateListing(listing): Observable<any> {
-    return this.http.put(`/listings/${listing.id}`, listing).pipe(
+  updateListing(listing: Listing): Observable<any> {
+    return this.http.put(this.listingsUrl, listing).pipe(
       tap(_ => console.log(`updated listing id=${listing.id}`)),
       catchError(this.configService.handleError)
     );
