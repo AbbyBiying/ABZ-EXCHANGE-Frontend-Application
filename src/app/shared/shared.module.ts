@@ -23,9 +23,10 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AlertComponent } from "./alert/alert.component";
 import { PlaceholderDirective } from "./placeholder/placeholder.directive";
+import { DropdownDirective } from "./dropdown.directive";
 
 @NgModule({
-  declarations: [AlertComponent, PlaceholderDirective],
+  declarations: [AlertComponent, PlaceholderDirective, DropdownDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -53,7 +54,7 @@ import { PlaceholderDirective } from "./placeholder/placeholder.directive";
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-
+    DropdownDirective,
     // material
     MatCardModule,
     MatIconModule,
