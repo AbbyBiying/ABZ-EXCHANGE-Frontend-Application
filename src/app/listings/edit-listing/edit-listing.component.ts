@@ -63,15 +63,10 @@ export class EditListingComponent implements OnInit {
   }
 
   private initForm() {
-    let listingName = "";
-    let listingDescription = "";
-
     if (this.editMode) {
       this.listingsService
         .getListing(this.id)
         .subscribe(listing => (listing = listing));
-      listingName = this.listing.name;
-      listingDescription = this.listing.description;
     }
 
     this.listingForm = this.formBuilder.group({

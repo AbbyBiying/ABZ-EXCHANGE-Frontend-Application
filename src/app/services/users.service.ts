@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, of, Subject } from "rxjs";
-import { map, catchError, tap } from "rxjs/operators";
+import { map, catchError, tap, filter } from "rxjs/operators";
 
 import { ConfigService } from "../config/config.service";
 import { User } from "../users/user.model";
+import { AuthService } from "../auth/auth.service";
 
 @Injectable({
   providedIn: "root"
@@ -12,13 +13,30 @@ import { User } from "../users/user.model";
 export class UsersService {
   usersChanged = new Subject<User[]>();
 
-  constructor(private http: HttpClient, private configService: ConfigService) {}
+  constructor(
+    private http: HttpClient,
+    private configService: ConfigService,
+    private authService: AuthService
+  ) {}
 
   /** GET useres from the server */
   getUsers(): Observable<any> {
     return this.http.get(`/users`).pipe(
       tap(_ => console.log("fetched all users")),
       catchError(this.configService.handleError)
+    );
+  }
+
+  getCurrentUser(): Observable<any> {
+    return this.getUsers().pipe(
+      //filter(user => user.email === this.authService.currentUserValue["user"]),
+      map(users =>
+        users.find(
+          user => user.email === this.authService.currentUserValue["user"]
+        )
+      ),
+      catchError(this.configService.handleError),
+      tap(_ => console.log("fetched current user"))
     );
   }
 

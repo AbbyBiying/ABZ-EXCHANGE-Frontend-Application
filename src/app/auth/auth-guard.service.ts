@@ -18,7 +18,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
-    route: ActivatedRouteSnapshot,
+    route: ActivatedRouteSnapshot, //provides access to information about a route associated with a component that is loaded in an outlet. Use to traverse the RouterState tree and extract information from nodes.
     state: RouterStateSnapshot
   ):
     | boolean

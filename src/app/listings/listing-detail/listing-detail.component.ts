@@ -14,7 +14,7 @@ import { switchMap, map } from "rxjs/operators";
 })
 export class ListingDetailComponent implements OnInit {
   listing: Listing;
-  paramsSubscription: Subscription;
+  subscription: Subscription;
   id: number;
   listingName: string;
   listingDescription: string;
@@ -27,14 +27,17 @@ export class ListingDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.params["id"];
+    const id = +this.route.snapshot.paramMap.get("id");
 
-    this.listingsService
+    this.subscription = this.listingsService
       .getListing(id)
       .subscribe(listing => (this.listing = listing));
-
     // onEditListing() {
     //   this.router.navigate(["edit"], { relativeTo: this.route });
     //   // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

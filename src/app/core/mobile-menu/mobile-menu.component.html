@@ -1,14 +1,38 @@
 <!-- <div class="menu-container"> -->
-  <button mat-button [matMenuTriggerFor]="menu">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">  
-    <a *ngIf="authService.isAuthenticated()" mat-menu-item routerLink="dashboard" routerLinkActive="active-link">Dashboard</a>
-    <a mat-menu-item routerLink="users" routerLinkActive="active-link">Users</a>
-    <a mat-menu-item routerLink="listings" routerLinkActive="active-link">Listings</a>
-    <a mat-menu-item routerLink="locations" routerLinkActive="active-link">Locations</a>
-    <a mat-menu-item routerLink="groups" routerLinkActive="active-link">Groups</a>
-    <!-- <a mat-menu-item routerLink="exchanges" routerLinkActive="active-link">Exchanges</a> -->
-    <a mat-menu-item routerLink="successful-exchanges" routerLinkActive="active-link">Successful Exchanges</a>
-  </mat-menu>
+<button mat-button [matMenuTriggerFor]="menu">
+  <mat-icon>menu</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <a
+    *ngIf="authService.isAuthenticated()"
+    mat-menu-item
+    routerLink="dashboard"
+    routerLinkActive="active-link"
+    >Dashboard</a
+  >
+
+  <!-- By using { exact: true }, a given RouterLink will only be active if its URL is an exact match to the current URL. -->
+  <a
+    mat-menu-item
+    routerLink=""
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >Home</a
+  >
+  <a mat-menu-item routerLink="users" routerLinkActive="active-link">Users</a>
+  <a mat-menu-item routerLink="listings" routerLinkActive="active-link"
+    >Listings</a
+  >
+  <a mat-menu-item routerLink="locations" routerLinkActive="active-link"
+    >Locations</a
+  >
+  <a mat-menu-item routerLink="groups" routerLinkActive="active-link">Groups</a>
+  <!-- <a mat-menu-item routerLink="exchanges" routerLinkActive="active-link">Exchanges</a> -->
+  <a
+    mat-menu-item
+    routerLink="successful-exchanges"
+    routerLinkActive="active-link"
+    >Successful Exchanges</a
+  >
+</mat-menu>
 <!-- </div>  -->

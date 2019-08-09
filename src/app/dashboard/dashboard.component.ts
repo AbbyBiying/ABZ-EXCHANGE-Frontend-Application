@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Subscription } from "rxjs";
+import { filter } from "rxjs/operators";
 import { User } from "../users/user.model";
 import { UsersService } from "../services/users.service";
 import { AuthService } from "../auth/auth.service";
@@ -34,9 +35,11 @@ export class DashboardComponent implements OnInit {
     this.currentUser = this.authService.currentUserValue["user"];
     console.log(this.currentUser);
 
-    const id = +this.route.snapshot.paramMap.get("id");
-    this.usersService.getUser(id).subscribe(user => {
+    this.usersService.getCurrentUser().subscribe(user => {
+      console.log("current user");
+      console.log(user);
       return (this.user = user);
     });
+    console.log(this.user);
   }
 }

@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from "@angular/core";
+import { NgxSpinnerService } from "ngx-spinner";
+import { Router, ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
 
-import { Listing } from './listing.model';
-import { ListingsService } from '../services/listings.service';
+import { Listing } from "./listing.model";
+import { ListingsService } from "../services/listings.service";
 
 @Component({
-  selector: 'app-listings',
-  templateUrl: './listings.component.html',
-  styleUrls: ['./listings.component.scss']
+  selector: "app-listings",
+  templateUrl: "./listings.component.html",
+  styleUrls: ["./listings.component.scss"]
 })
 export class ListingsComponent implements OnInit {
   listings: Listing[];
@@ -20,28 +20,26 @@ export class ListingsComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private route: ActivatedRoute
-    ) {}
+  ) {}
 
-  ngOnInit() { 
+  ngOnInit() {
     this.spinner.show();
-    
+
     setTimeout(() => {
       this.spinner.hide();
-    }, 1000);   
-        
-    this.subscription = this.listingsService.listingsChanged
-      .subscribe(
-        (listings: Listing[]) => this.listings = listings
-      );
+    }, 1000);
 
-    this.listingsService.getListings()
-      .subscribe(
-        (listings: Listing[]) => this.listings = listings
-      );
+    this.subscription = this.listingsService.listingsChanged.subscribe(
+      (listings: Listing[]) => (this.listings = listings)
+    );
+
+    this.listingsService
+      .getListings()
+      .subscribe((listings: Listing[]) => (this.listings = listings));
   }
-  
+
   onNewlisting() {
-    this.router.navigate(['new'], {relativeTo: this.route});
+    this.router.navigate(["new"], { relativeTo: this.route });
   }
 
   ngOnDestroy() {
