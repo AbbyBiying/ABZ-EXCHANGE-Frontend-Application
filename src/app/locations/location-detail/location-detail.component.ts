@@ -26,7 +26,7 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
   }
 
   getLocation(): void {
-    const id = +this.route.snapshot.paramMap.get("id");
+    const id = +this.route.snapshot.paramMap.get("id"); // + is to convert string id to number
     this.locationsService
       .getLocation(id)
       .subscribe(location => (this.location = location));

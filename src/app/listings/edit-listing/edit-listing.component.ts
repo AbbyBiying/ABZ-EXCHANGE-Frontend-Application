@@ -33,6 +33,9 @@ export class EditListingComponent implements OnInit {
 
   ngOnInit() {
     this.getListing();
+    console.log("queryParams obj and fragment");
+    console.log(this.route.snapshot.queryParams);
+    console.log(this.route.snapshot.fragment);
   }
 
   getListing(): void {

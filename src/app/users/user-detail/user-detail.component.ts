@@ -46,7 +46,7 @@ export class UserDetailComponent implements OnInit, OnDestroy, AfterViewInit {
     // });
   }
   getUser(): void {
-    const id = +this.route.snapshot.paramMap.get("id");
+    const id = +this.route.snapshot.paramMap.get("id"); // + is to convert string id to number
     this.subscription = this.usersService
       .getUser(id)
       .subscribe(user => (this.user = user));

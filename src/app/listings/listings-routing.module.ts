@@ -10,6 +10,7 @@ const listingsRoutes: Routes = [
   { path: "", component: ListingsComponent },
   { path: "new", component: EditListingComponent },
   {
+    // path: ":id/:name",
     path: ":id",
     component: ListingDetailComponent,
     canActivate: [AuthGuardService]

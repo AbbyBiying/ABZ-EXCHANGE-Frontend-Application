@@ -23,12 +23,6 @@ export class ListingsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.spinner.show();
-
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 1000);
-
     this.subscription = this.listingsService.listingsChanged.subscribe(
       (listings: Listing[]) => (this.listings = listings)
     );

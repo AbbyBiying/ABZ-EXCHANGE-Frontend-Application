@@ -3,8 +3,8 @@ import { RouterModule, Routes, PreloadAllModules } from "@angular/router";
 
 import { HomeComponent } from "./core/home/home.component";
 import { ErrorPageComponent } from "./error-page/error-page.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AuthGuardService } from "./auth/auth-guard.service";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 const appRoutes: Routes = [
   {
@@ -13,7 +13,8 @@ const appRoutes: Routes = [
   },
   {
     path: "dashboard",
-    component: DashboardComponent,
+    loadChildren: () =>
+      import("./dashboard/dashboard.module").then(m => m.DashboardModule),
     canActivate: [AuthGuardService]
   },
   {
@@ -69,13 +70,15 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     // Provides a preloading strategy that preloads all modules as quickly as possible
     RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })
     // ,{ enableTracing: true } ),
   ],
   exports: [RouterModule],
 
-  declarations: [DashboardComponent, ErrorPageComponent],
+  declarations: [ErrorPageComponent],
   providers: []
 })
 export class AppRoutingModule {}

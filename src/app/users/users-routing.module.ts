@@ -8,7 +8,8 @@ import { EditUserComponent } from "../users/edit-user/edit-user.component";
 
 const usersRoutes: Routes = [
   { path: "", component: UsersComponent },
-  { path: ":id/:username", component: UserDetailComponent }, // the colon simply tells Angular that this is a dynamic part of the path.
+  // { path: ":id/:username", component: UserDetailComponent }, // the colon simply tells Angular that this is a dynamic part of the path.
+  { path: ":id", component: UserDetailComponent }, // the colon simply tells Angular that this is a dynamic part of the path.
   {
     path: ":id/edit",
     component: EditUserComponent,

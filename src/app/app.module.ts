@@ -11,6 +11,7 @@ import { AuthModule } from "./auth/auth.module";
 import { AppComponent } from "./app.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -23,6 +24,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MobileMenuModule,
     FlexLayoutModule,
     CommonModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot()
   ],
   providers: [],

@@ -26,7 +26,7 @@ export class ImageDetailComponent implements OnInit {
   }
 
   getImage(): void {
-    const id = +this.route.snapshot.paramMap.get("id");
+    const id = +this.route.snapshot.paramMap.get("id"); // + is to convert string id to number
     this.subscription = this.imagesService
       .getImage(id)
       .subscribe(image => (this.image = image));

@@ -8,6 +8,7 @@ import { EditGroupComponent } from "../groups/edit-group/edit-group.component";
 
 const groupsRoutes: Routes = [
   { path: "", component: GroupsComponent },
+  // { path: ":id/:name", component: GroupDetailComponent },
   { path: ":id", component: GroupDetailComponent },
   { path: "new", component: EditGroupComponent },
   {

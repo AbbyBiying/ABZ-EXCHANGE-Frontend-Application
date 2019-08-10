@@ -24,7 +24,7 @@ export class GroupDetailComponent implements OnInit {
   }
 
   getGroup(): void {
-    const id = +this.route.snapshot.paramMap.get("id");
+    const id = +this.route.snapshot.paramMap.get("id"); // + is to convert string id to number
     this.subscription = this.groupsService
       .getGroup(id)
       .subscribe(group => (this.group = group));

@@ -27,11 +27,12 @@ export class ListingDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get("id");
+    const id = +this.route.snapshot.paramMap.get("id"); // + is to convert string id to number
 
     this.subscription = this.listingsService
       .getListing(id)
       .subscribe(listing => (this.listing = listing));
+
     // onEditListing() {
     //   this.router.navigate(["edit"], { relativeTo: this.route });
     //   // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
